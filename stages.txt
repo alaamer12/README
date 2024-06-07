@@ -1,0 +1,43 @@
+Stages:
+	PreDevelopment:
+		we will set the UI Standards will be used across the apps
+		we Will set the color[style] will be used across the apps
+		we will set the fonts will be used across the apps
+		we will set the Styled Api will be used across the apps like nativewind or Emotion
+		we will set the Media query will be used across the apps
+		we will set the Theme will be used across the apps
+		we will set the Brand Images will be used across the apps
+		we will set the UI Images will be used across the apps
+		we will set the fonts will be used across the apps
+		we will set the Translations[en, ar] will be used across the apps
+		we will set the Lang Id will be used across the apps
+		we will set the Basic Style Components will be used across the apps
+		we will set the TypoGraphy Components will be used across the apps
+		we will set the Layout will be used across the apps
+		we will set the Structure will be used across the app and the Structure for web App
+		we will set the Formation and the content will be used across the apps
+		we will set the Prototype will be used across the apps
+		we will set the Gradients will be used across the apps
+		we will set the Linter will be used across the apps
+		we will set the Linter Rules will be used across the apps
+		we will set the Structure project will be used across the apps
+		we will set the Apis' will be used across the apps
+		we will set the Navigation will be used across the apps
+		we will set the Lips' will be used across the apps
+		we will Determine the features will be used across the apps
+		we will Determine How the State will be Managed across the apps
+		we will Determine How the Storage will be Managed across the apps
+		we will Determine how Facebook page and groub will be
+		we will Determine If we are going to use Our Apis' or not
+		we Will set the Stages of making the features or pages the of the app and how it will go
+		we will set the the Components will be used across every features or page
+		we will set the Sound will be used across the apps
+		we will set the Icons will be used across the apps
+		we will set the System and rules will be used across the apps
+		we will set the Political things will be used across the apps
+		we will set the Optimization [fonts, files] methods will be used in the end across the apps
+		
+	Development:
+		we will start by making all the basic components and typoGraphy and layout will be used across the apps
+		
+		

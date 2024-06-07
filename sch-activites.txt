@@ -1,0 +1,19 @@
+<
+	## ML[P]
+	## Games[PC]
+	~ ## Media => ### Facebook[P]
+	!## PoS[P]
+>
+other than that => ...etc.
+
+
+projects:
+	1. media > media tags,
+	2. browsing > getting resources
+		> browsing itself as a tag for short browsing
+	3. learning > reading, writting
+	4. working > desginging, job
+	5. Miscellaneous > personal life, prayer, grocery, ...etc.
+	6. organising > computer organising tags
+	7. studying > college 
+	8. practice > physical practice and project turtorial and chanllenges

@@ -1,0 +1,36 @@
+#org.org
+
+	to be honest im actually dont know anymore what is the idea
+	i belive our app was focusing on help 3rd grades but its likely i peeked into the furture
+	motophorically that the app maybe not only for third grades but for all grades
+	this is what i became to belive in,
+	i wanted in this app to provide a stream of posts about education fillterized
+	i wanted to provide chatting, i want to provide classes[teachers , students]
+	i want to provide scoring system , maybe i wanted likely to provide 
+	two modes for the application[surfing, studying]
+	i wanted to provide goals , statistics
+	i wanted to provide leaderboard
+	i wanted to provide reels of education videos
+	i wanted to provide comprehensive notifications features
+	i wanted to provide special treatment based on student or instructor
+	i wanted to provide communities in-app and out-app
+	i wanted to provide i88n and localization 
+	i wanted to create social media app that doesnt distract u on studying
+	#i wanted to provide an app that u can learn from , to be useful for u , to be able
+		to get what u want or what u want to see in no time, i wanted to be like a library
+		for studying resources
+	#i wanted the app to be professional but also simple
+	i wanted to provide some utils for studying like grapping[scrapping] the degree,
+	AI tools, chatbots, ...etc...
+	i wanted to provide QA section[tab]
+	
+	i think those all the feaures would be found if the application is done
+	but now lets revise the compatitors,
+	most of them provide the `classes`
+	most of them goals
+	some provide scores, statistics, QA,Leaderboard , AI tools and teacher-student features
+	few of them provide reels , stream of posts
+	none provides library resources, reels, scrapping tools, full chatting system and fillterized posts
+		outer services ,comprehensive notifications features,communities in/out-app[discord, telegram]
+		localization
+		

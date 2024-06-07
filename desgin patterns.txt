@@ -1,0 +1,42 @@
+# This file is going to describe our understanding of desgin patterns
+	also our thoughts of which multi desgin patterns are compatible with each other
+	and when to use each desgin pattern and why to use it and also how to structure 
+	super-multi desgin patterns
+	
+	desgin patterns:
+	
+		Note: there are about 23 desgin pattern and covering all of them maybe be hard for us
+			so because of that we will cover essentials from them i think like about 11 desgin pattern
+			also we may take a look on the 23 desgin patterns but this is doesnt mean we will implement
+			all of them on some random projects
+	
+		singleton: singleton is a simple desgin pattern, easy to implement and understand
+			singleton based on just be sure there is one instance of the class, even if
+			u defined more than one instance all the instances are considered one becuase 
+			all of them share same storage, so u have actually redefination the main instance
+			
+			three steps to make singleton:
+				define __instance = None variable at the class
+				define __lock = None or use threading module [threading.lock]
+				make double nested if condition in the suitable place to finally assign 
+				the __instance to the class
+			
+			singleton is good when u want to init something for first time only and u dont want
+			to have multi instances
+		
+		command pattern: is a way to descibe commands [commands are different of strategies]
+			command pattern consists of this structure:
+				base_command: an abc command
+				commands: subclasses commands from base_command
+				invoker: command manager
+			
+			usually command pattern is used to make cli, because cli is about some commands
+			with flags and arguments
+			
+			also command pattern is good at redo and undo, becuase this desgin pattern provide
+			a memory, unlike other desgin patterns which they are memoryless
+			
+		
+		
+	combinations:
+		pass

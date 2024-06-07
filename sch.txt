@@ -1,0 +1,28 @@
+@Attempt 1 to make a schedule
+	start day by Fagr prayer 15 mins, do 15~30 mins practice time, rest 10~20 mins, getting breaking
+	ready and eat it 30 mins ~ 45 mins, start our daily tasks/activities,
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+activities can be classified as:
+	study activities: are the activities which we obliged with it becuase its topics needed to be
+		studied for college graduation
+	learning activities: are the activities we do to self-learning
+	maintaining activities: are the activities which we do to clean and maintain a health for 
+		ourselves and the PC
+	offset activities: offset activities are the activities we have to do in order to do 
+		the other activities, like to go to job we have to take a transportation
+	job activities: are the activities we do it the job
+	playing activities: are the activities we do to entertain ourselves, including out-mirror-activities
+	practical activities: are the activities we do practice in it, this practice can be physically
+		like do some running, push-ups, ...etc. or it can be logical like practice coding and
+		problem solving
+	out-mirror-activities: are the hidden activities

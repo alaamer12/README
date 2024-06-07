@@ -1,0 +1,79 @@
+this is a notes of apis oe tech we have known :
+next : it is SSR like-react
+Nuxt : it is like next but for vue
+vite or vitest : it is CSR for many Frameworks and has optimized builder 
+RNUI : abbrev for react native ui lib it is a lib which has comprehensive components and big size and a lot of utils
+RN kitten : it is ui for react native based on  eva desgin system,
+eva design system : it is a system for colouring and theming and more 
+Tamagui : it is ui lib and optimized compiler as they said for react native and web (can be next or vite)
+solito : it is a lib for react native which allowed u to use react native and next js together in one code
+turbo : it a builder for monorepo and optimized data cache and it can cache it remotely with price and it also generates workspaces and codes
+and turbo is built on plop which it is a code generator so every valid config for plop is valid config for turbo
+there is only lerna and Nx as monorepos builders
+yeomon: also is a code generators and it looks like it is more popular a bit than plop
+manypkg: it is special cli targets.json file to get the error inside it in monorepos which it is a lot useful
+install : it looks a lib to fix some problems with commonjs and web browser where comonjs doesnt look to be built in so it requires a little steps , and this lib requires some config
+burnt: which is a toast component and it was used at tamagui i dont know why
+dotenv : it is a lib allow u to use .env and proccess.env , some of the tech is built in where u dont need to use it and others no 
+check-dependencies-version-consistency: it is like manypkg and maybe offers more idk
+depcheck- check dependacies,
+npm-check: also
+npm-check-updates : Also but with option to update
+note that they usually dont concern for a needing library like when moti is needing reanimated they will think that reanimated is unused
+crossenv : a lib to make sure the env is working across all platforms (in development)
+doppler : is a platform for secret ops and so on , it keeps the secrets as apis and so on
+hoist-non-react-statics : it is a way to share props or statics between components and it is used for class components which it is old
+tsup : Bundle your TypeScript library with no config, powered by esbuild
+Prisma : Is a database toolkit and ORM [object-rational-mapping] , helping managing a database and manipulate them
+np: it looks this a package for better publishing on npm `npm publish` NOT SUPPORTING monorepo
+
+zod: it is validation library where the validation libraires are a a libs for makinga scheme and validate and parse
+	they are likely provide easier way with them however u still can do it with plain javascript 
+	but they shorten the code and also provide more user-friendly and ensures no errors and leaks
+	and ZOD one of the most popular once which also provides typescript in it which doesnt make u to provide
+	type annotations 
+	
+joi: it is considered more extensive than joi and provides more functionallties and it is extensionable
+yup: same, but simpler than both of them
+validator: same, but in more focus on validation
+avaj: same, but supports extensively work with json and constructors
+superstruct: same, but lightwieght and simpler
+
+lint-staged: it is liker a linter for some files or on stages depending on git,
+	it likes it is linting the files will be commited or something like that
+	
+eslint-plugin-unicorn : it looks a loved plugin from a lot it has over 100 rules
+	and it also supports `--fix`
+	
+@commitlint/cli: it is a cli to enforce the commit message to git by it is like a linting or
+	a rules should the developer follow to get clear and understandable commit and to be consistant in CHANGELOG
+and it uses as @commitlint/config-conventional as pre-configured rules
+
+react-query-kit: it looks like a way to help with query and it is like provides more type safe ,...etc.
+	but i really dont know as i havent worked with query before
+@tanstack/react-query: it looks like a community of react-query where react-qurey usually used for
+	fetch, cache and update data	
+	
+react-hook-form: it is just a validator hook for forms
+react-error-boundary: it is a way to provide a fallback for a ui when errors occure but and
+	it looks like it works on react, react-native, expo but it has to be client side
+	
+app-icon-badge: it renders forground badge over ur app icon and it looks like it have been developed throw
+	obytes 
+expo-build-properties: it is a way to customize the build confiuration and it looks it also works
+	with `expo prebuild`
+
+@hookform/resolvers: it a reslover for scheme which means it used with validation libraries as yup or zod
+	and it also needs u to use react-hook-form
+	so the three libs work together
+
+@bacons/link-assets: it is a linker where it links the assits into native build so it enables 
+	sync loading, it looks like it works only in development or something like that so it maybe 
+	a tool to help in development in native projects
+	
+curl -Ls "https://get.maestro.mobile.dev" | bash : it is a script runs on cli for UI [e2e] testing
+	and it looks so good
+	
+only-allow: it allows only one package manger 
+
+husky: it is widely used for more than 10 millions and it provides hooks for git

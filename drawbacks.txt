@@ -1,0 +1,108 @@
+solito expo next : first the UI of native doesn't work on web and the ui of web doesn't work on native so u usually have to make a ui for web and native but tailwind is supported and works greatly
+second thing u dont know how to set storybook or jest u dont know if it should set for separated or just one repo cause they use same source code additionally u dont know how in both ways
+thirdly u can write css for web directly by any file and from any file u want
+fourthly u can use UI Api one for web and other for native
+fifthly next looks better for SEO with little drop-down
+sixthly u have to use fonts and other utils for every platform so imagebackground wont work with next and maybe some native components wont work
+sevenly we have tested with it css utils , webkit , fonts , animation with animated and moti and it worked in all and nativewind utils
+
+
+
+common u have to make different layouts for web and native
+
+
+
+
+next expo firstly in first look it looks good where u are using next for web and just expo and it is monorepo
+but i have tested css utils and it only works on specific file and doesn't work on other files so it doesn't support css which will cause problems because we need to use webkit in some cases so in order to this i drop-down next expo and didnt do any further test 
+
+
+expo router firstly it also looks good but not optimized for SEO however thier doc say its optimized but i really dont know but as it is CSR i think it is not optimized
+we did so much tests with expo router 
+we managed to use storybook and handle it 
+we managed to use nativewind and handle it but it looks because it uses web version of expo so it doesn't support web utils so u cant use utils for web throw nativewind like using linear gradient but it supports all css utils or kinda them because i haven't tested all css utils and more over i managed to use with it jest and i think native UI apis will work on it without needing to make layouts for every platform
+but the drawbacks of css utils means u have to use css not native wind and this means u have to use html tags and this maybe lead to cant share same logic no it is certainly u cant share same logic and u have to make special style utils for web
+but it looks like i forgot something which is expo web sipports hover throw Pressable component which can solve hover effect but still there is many effects and i dont know if it can fix it moreover maybe we can work around with this drawback
+
+i think we are going to try using storybook again with solito and maybe we can also think of work around about expo router but i think next expo has no chance because we need css file to handle webkit and i don't know any workaround with it 
+
+further thing maybe some APIs of native will work on web i think somed support web utils and so on
+
+
+tamagui we looked away at tamagui because its senetive firstly we failed at depoly to vercel but i think i have got an idea of how to make so imagine if we succeed in it there is still a problem, tamagui is very sensitive which requires peer dependacies and i also failed at building expo app maybe we can try again but still we didnt succeed and also with tamagui we managed to use animations and understand things in it and we could a little manipulate it but still not enough, 
+if we couldn't solve the three problems or at least two of them which are expo build fail and vercel we wont use tamagui 
+
+
+
+so in conclusion we have three options will be sorted wil performance based on my knowledge
+tamagui solution 
+solito solution
+expo router solutions
+
+all of them has a drawbacks 
+
+
+
+
+
+
+
+
+/*****************************************/
+
+we have that solito has a werid behaviour i havent seen anything like this before 
+if u created app then moved the app into another directory it gives error 
+if u renamed the app it gives error
+if u copied the app and tried to use the copied app it gives error
+if u change the inner content appd it gives error
+if u moved the app then return it back to its previous path it comes to work again
+if u rename it then rename it again with previous name it comes to work again
+u cant add any further directory or app in solito even if u copied and paste ready directory or even if u adjusted workspaces 
+even if u want to add an app or directory u have to remove .yarn folder and yarn yml and yarn lock in all existed directory and causing building it (yarn install) gives error
+the only solution to add thing is to add a folder app like storybook to root and dont delete.yarn or any yarn related files 
+because by this way it wont read it as workspace but instead as standalone directory, it also may cause a lot of mess in root which it is preferred or preferable to be in apps directory but this causes some issues
+and also adding storybook at root which it will be standalone make it unaccessible into the projects components which cuase u to copy the files into storybook and they are already existed in the project
+
+till now i dont know why this fkin senetive of soilto and i dont know what if i used different versions it will work or not and i dont know if tamagui has sam senetive or not but i think not because i remember copy tamagui and i dont remember one of this issues in tamagui
+
+
+also i have tried again tamagui but again it didnt work with expo sdk 49 and it has issues with expo sdk 48 but yesterday 14 oct i have tried it at expo sdk 47 and it worked perfectly and the build done with 33 mb and 1.1 mb compression so i guess the problem is tamagui isnt compatible with newer expo versions , however we moved a step to get work with tamagui, the rest is to make it work with vercel but still the same idiot error in vercel and because tamagui and soilto are new developments tools there is not where to ask at google only stupid discord server with idiot buddies 
+so i wish we can deploy it on vercel after that now we can use tamagui and its optimized compilation and i think every test we did on solito will work on tamagui and i dont really remember if tamagui uses tailwind but this is okay because tamagui has all needed to kake sam results as tailwind with more handwriting
+and we also checked vite and we find out that vite doesn't work with next as vite is SAP OR CSR while next is SSR and it looks there is no way to use them together however next js is enough
+
+we also noticed things that Image component in react native doesnt work with next js which it doesnt render the image and the img tag looks it works but i couldn't make it work with local images and there's Image component from next/image but i don't know how it works because it looks it has different mechanisms and also there's Image component in moti but the component i didnt test it but i think it can make the image work on both sides 
+aldo the Imagebackground component doesn't work on both platforms so u have to set it manually for every platform or u can just find alt component works on both 
+and it looks like there's some components doesnt work on both platforms but till know i dont know , i think some of these components are components which render images or render videos, also ScrollView component doesnt give any effect on web it is like View and i havent tested flatlist or any list components, also u can do the animations on web throw nativewind which it uses keyframes or u can use moti but i really dont know which provides best performance on web but i think both is good and i think moti is better approach to animate on web and native 
+also the div font size text is different from Text font size text i think this is related to rem also we tried short hand styles by apply directive but it only worked on web and it worked with native components like Text and aldo with web components like div but i think it doesnt work because when we applied short hand styles we applied it into global.css in next directory so it make sense to work on next only but because expo doesnt have a global css we cant apply it but i think there's a trick i say in the raw project of our own which it is expo nativewind storybook in this project we have used styles.css but there is chance this is wont work any way the short hand style is isnot the biggest problem we have here , we are kinda managed to work around with soilto to make it work but less or more we still dont know if it stable or not and does it will provide the perfect app in our mind or it just will be trash and time wasting anyway we are likely ready to start development one more little step is to try to make vercel works ad it should be with tamagui then make quick test on it then we are ready to go with tamagui
+
+
+expo router: firstly we embraced it but then i found out even expo router u still will do the web side with native components which means u cant add hover and apply styles for web like linear gradient which it requires u to make it with the native components u can also work around at this point by using Pressable component which provides hover or using web tags as div but the problem is maybe we cant associate the logic to tags as we can do to native components or maybe we can i havent tried yet but i think so 
+also u can use some of css utiles like vw or vh but it doesnt enable HMR do u have to reload the page to see the differences 
+but i think one of its merit is u can use native components and it should work 
+
+ohh ohh i remembered something about soilto that if u used native component which it is compatible with web as date time picker it wont work because its next js not expo web
+
+and also in in expo web in afraid in dome points we cant use css utiles which we will need it for webkti , it works for now but i afraid it wont work later
+
+also in solito or it is looks in tailwind in general u cant use operation like 5vw -100 px it wont work maybe because different unit or maybe viewport doesn't work but other methods works well in both platforms but the em unit doesn't work on native i think this because there is no body for native to inherit font size from
+
+
+
+we have to evecualte the components to see if we need to use expo router only or solito with or without tamagui
+
+anyway all it depends on today the day we give tamagui one more chance to work 
+the expo native part worked now however i dont like the sdk 47 but it isnt the problem now the problem is to make vercel works and some tests and then tamagui is ready to go also we going to test first the werid behaviour that solito has to see if tamagui already has it or not 
+
+
+
+the items we got for development are 
+we set the translation by python 
+we set typography
+we need to set images 
+we set icons as svg
+we set logo
+we need to set basic components
+we need to set some sounds
+we set font optimizer  and file optimizer
+we set development env or it is on working
+we need to set prototype

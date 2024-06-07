@@ -1,0 +1,70 @@
+# Road to tealim
+	in short:
+		modules, 
+		pytest and its pluguns, 
+		tox and devpi, 
+		django plus api, 
+		principles, 
+		desgin patterns projects, 
+		rest of desgin patterns, 
+		more projects, 
+		problem solving/code challenges
+		frontend vanila projects,
+		react project, 
+		full stack applications,
+		complete projects, 
+		accumulate the number of categories u made through, 
+		RN frontend projects , 
+		RN full stack projects, 
+		RN universal projects,
+		tealim
+	in long:
+		first: we have to study python modules, i mean most the list we have made
+			we have made three lists of modules[to-be-studied, to-be-known, to-be-studied as-u-go]
+			so we have to study to-be-studied list
+			plus;
+			studying pytest and tox plugins
+			plus;
+			applying on each module or plugin as needed
+			plus;
+			complete the existed projects
+			plus;
+			studying a backend frameworks, we have chose django and fastapi
+			we will study fastapi first and then django as-we-go
+			we will utilise fastapi to make api and backend 
+			plus;
+			studying principles and desgin patterns and apply on them with one or more project
+			
+		second: we have to do more projects, more complex projects, because we have studied enought
+			to be capable of doing complex projects we have studied a lot of tools and principles and desgins
+			so we have to make a project to employe all what we have learnt
+			
+		third: after that we have studied and we have applied in local projects, its time
+			for online problem solving, also we want to provide a way to retreive the problem and 
+			answer for future revising
+			
+		fourth: now we have covered everything for backend now its time to move on to frontend
+			we are already has some experments in frontend
+			first we will do simple project vanila css
+			then we will do vanila js
+			then we will do more complex projects [intermedaite] with tailwind 
+			and frontend framework [react]
+			then we will do complex frontend projects, those complex projects could covering
+			many tools as formik, redux, shaden
+		fifth: now we can go to react native, this has to be sufficient time to have expo
+			released the v51, which we help as a lot
+			if v51 has released then we have to decide which tech-stack we will use
+			also, we dont care anymore to performance so any valid fast stack is sufficient
+			we can later migrate to better tech-stack for better performance
+			i wont describe the technical details here
+			first we make a little gui simple application
+			then we make a little full stack projects 
+			then we make a little universal projects 
+			
+		sixth: finally this is the last step, where we you have covered all u need to make
+			THE UNIVERSAL PROJECT `tealim`
+			
+			
+	Notes: we dont aim to be super professional in frontend nor backend,
+		remember our target is to fulfill the tealim project in most efficient way
+			

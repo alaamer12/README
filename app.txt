@@ -1,0 +1,160 @@
+what we provide and we dont:
+	we will not provide auth,
+	we have two main features, two input data and get resulted data
+	to show the data in statistical form
+	sub feature is to auto input, with default input 
+
+about:
+	43 data
+	23 outputs[auto generated]
+	20 inputs[manually]
+
+all inputs:
+	"name": None,
+    "tags": None,
+    "description": "<optional>",
+    "max_score": None,
+	"repeated": None,
+	"priority_weight": None,
+	"projects": None, # [Browsing, Gaming, Learning, Media, Miscellaneous, Organising, Practice, Studying]
+    "duration": "<no-input>",
+	"status": None,  # [Completed, 
+	"relation_with_project": "<optional>",
+	"Task_Constraints": "<no-input>",
+	"location": None,
+	archived_due_data: "<no-input>"
+    "username": "<no-input>",
+	"task_name": "<optional>",
+	"adherence_time": None,
+    "leaps": None,
+	"feedback": "<optional>",
+	"abondence": "<no-input>"
+	"health": "<optional>",
+    "notes": "<optional>",
+    "environment": None,
+
+what we did:
+	code, notes [o], Task_Constraints [o], adherence_time
+
+what we want is to let user input those:
+	code, notes [o], Task_Constraints [o], adherence_time
+
+	so user should input promo code and adherence_time to be ok to go
+	
+input fields[2]:
+	name,  task_name, 
+	textArea[3]:
+		description, Task_Constraints, notes
+combobox[9]:
+	tags, repeated, status, relation_with_project, location, health, environment,
+	projects, feedback
+timeFormat[3]: 
+	duration, adherence_time, archived_due_data
+numberInput[3]:
+	max_score
+	priority_weight
+	leaps
+
+
+
+
+
+
+
+
+all outputs:
+	"obtained_score": "<no-input>",#
+	"adherence_rate": "<no-input>",#
+	"creation_date": "<no-input>",#
+    "update_date": "<no-input>",#
+	"id": "<no-input>",#
+    "overall_time": "<no-input>",#
+    "obtained_time": "<no-input>",#
+	"task_counter": "<no-input>",#
+    "leap_counter": "<no-input>",#
+"stats_functions": "<no-input>",#
+    "task_badge": "<no-input>",# [Excellent, Perfect, Good, Bad]
+	"deadline": None,#
+    "deadline_counter": None,#
+    "due_date": None,#
+    "completion_date": None,#
+	"missing_counter": "<no-input>",#
+    "badge_counter": "<no-input>",#
+    "total_badge": "<no-input>",#
+"log_functions": "<optional>",#
+	"abondence_counter": "<no-input>",#
+    "archived": "<no-input>",#
+    "archived_counter": "<no-input>",#
+	"history": "<no-input>",#
+	"streak": "<optional>",#
+	"code": "<no-input>",#
+
+statisticals:
+	i think the data i would use in statisticals
+	but first we have to ask ourselves what we will provide in this visualization
+	i think we can provide [mean, variance, median, mode] for each project
+	i think each visualization will be for 'projects', but we have to make the interval
+	i think we can make interval [today, week, month, till now]
+	
+	now about how many visualization we will do, we need to do it for most important
+	i think the basic statisticals + Task Completion Rate + Adherence Rate Over Time + 
+	Project Distribution
+
+
+notes:
+	promo code will combined from first letter from project name upper case and second
+	letter of first tag[main tag] lowercase and if not exist first two letters in project
+	
+	update_date = completion_date if no update_date
+	stats_functions and log_functions are functions
+	history have the history of adding, deleting, updating
+	
+	deadline is three days after the due_date
+	
+	archived
+	
+	i havent yet determined the id but i think it will be simple
+	
+	
+	
+	
+	
+-----------------------
+Here are some standard suggestions for statistical visualizations in your time tracker app, along with the charts that could be used, how they would be used, why they would be used, and their inputs and outputs:
+
+Task Completion Rate
+
+Chart: Pie Chart or Bar Graph
+How It Would Be Used: To visualize the percentage of tasks completed vs. total tasks, providing an overview of productivity.
+Why It Would Be Used: Helps users understand their task completion efficiency and set realistic goals.
+Inputs: Number of completed tasks, total number of tasks.
+Outputs: Percentage of tasks completed.
+Adherence Rate Over Time
+
+Chart: Line Graph or Bar Graph
+How It Would Be Used: To track how the user's adherence rate (percentage of time spent adhering to the schedule) changes over time.
+Why It Would Be Used: Helps users identify patterns in adherence and make adjustments to improve time management.
+Inputs: Adherence rate data over time.
+Outputs: Trend of adherence rate over time.
+Project Distribution
+
+Chart: Pie Chart or Bar Graph
+How It Would Be Used: To visualize the distribution of time spent on different projects.
+Why It Would Be Used: Helps users understand their time allocation and prioritize projects accordingly.
+Inputs: Time spent on each project.
+Outputs: Distribution of time spent on different projects.
+Task Status Distribution
+
+Chart: Pie Chart or Stacked Bar Graph
+How It Would Be Used: To show the distribution of tasks based on their status (completed, not completed, missed).
+Why It Would Be Used: Helps users track their task progress and identify areas where improvement is needed.
+Inputs: Number of tasks in each status category.
+Outputs: Distribution of tasks based on status.
+Time Spent on Different Activities
+
+Chart: Bar Graph or Pie Chart
+How It Would Be Used: To visualize the time spent on different activities (browsing, gaming, learning, etc.).
+Why It Would Be Used: Helps users understand how they are allocating their time and identify areas for adjustment.
+Inputs: Time spent on each activity category.
+Outputs: Distribution of time spent on different activities.
+These visualizations can be implemented using a data visualization library such as Matplotlib or Plotly in Python. The data would be collected from your time tracker app and then processed and plotted according to the chosen chart types. Users would interact with these visualizations within the app to gain insights into their time management habits and make informed decisions to improve productivity.

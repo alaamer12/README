@@ -1,0 +1,2812 @@
+Note: all the data here is the updated ones so this is the latest version
+
+	Here it goes notes about things i have figured out , first of some of my pc functionalities are
+		broken and i dont understand why or what caused that and i dont know if it is related with missing
+		files or when i upgraded my windows the update was incomplete or the iso was broken but i dont 
+		think so becuase i have updated it throw the offical windows updater , so i think there is no 
+		problem with windows 10 but i still dont know when it updates windows does it overrides the 
+		existed one [i think so] or does it creates new instance and deletes the previous one
+		so there is very little propallity the issue was existed in windows 8 and we figured it now
+		the issue is the broken functionalities and i dont know if it is really related with my hardwares [device]
+		or it is related with the package [turbo<monorepo>] which the issues with it existed
+		it kinda trigger the issue but i think this happen becuase our project is scaling which leads for bigger
+		node_modules; and one of the issues is related with file path which it has limit [256] and 
+		for some reasons i dont think the problem with [turbo] where i did the copy opperation with `copy`
+		built in windows and it failed while i did it programmtically with python throw robocopy or shutil 
+		it worked but what i dont understand the `copy` works well with other smaller projects then why it doesnt work here
+		idk, but i guessed becuase of the scaling 
+		
+		the second issue is when renaming the project it leads to issue [leaking] files and unable to read them
+		while if u again did this programmtically it would work and here i confused what the hell could do
+		this and why when changing the directory name by built in `rename` in windows it leaks the files
+		this is totally nonsense and here im almost sure the issue is related with <monorepo> or <windows>
+		so i guessed i can fix this by upgrading into windows 11 but my pc aspects isnt compatibale [processor]
+		so i guess i cant just upgrading easily and i dont want to take a risk of losing files
+		and i cant do something about turbo , there is ways to make monorepo by [lerna, nx, turbo]
+		but turbo is most popular and effiecnt and i dont know if the error is related by monorepo of turbo or
+		the monorepo in general
+		
+		the third issue is for windows installer where i stacked i cant install anything becuase it crashes 
+		and this is lead to that even windows update cant update, and i also rememberd that the windows update
+		was working at windows 8 and windows 10 when i upgraded so it must be something happened sonnly
+		
+		the fourth issue is create restore point is not working anymore and i think this is the root of issues
+		, [also it was working at windows 8 and windows 10 when i upgraded so it must be something happened sonnly]
+		
+		somethings else i found:
+			npm it would be look like it is working but it isnt actually not working
+			however it wont give u an error and it will act like every thing fine so it isnt best choice 
+			for scalling project
+			
+			it is not recommended to use yarn with turbo becuase yarn doesnt support [types]
+			NOTE : TYPES IS USED WHEN THE CONFIG OF TURBO IS IN TYPESCRIPT SO U CANT JUST AVOID THE types
+			BY MAKING THE CONFIG JAVASCRIPT 
+			but i dont recommended this i have bad feeling about it , as turbo chose to use npm over yarn
+			
+			so i recommend to use pnpm with turbo monorepo only becuase pnpm works effiecntly
+			and it kinda lighter and faster so it is good choice but ..............
+			
+			pnpm has a problem first time to notice it , it doesnt considered a problem but its environment of
+			how working done , pnpm creates a store for itself to make reused dependacies to faster the process and 
+			cache and lighter size but this is conflict with all `copy` functionalities where pnpm the dependacies
+			that will be used in its store it make them shortcut 
+			so when u copy them with any functionalities actually it wont copy the shortcut but instead it 
+			will get the reall package
+			
+			so to make things clear imaging the directory project is 500 MB
+			then the copied one by pnpm will be 2.5GB 
+			
+			so this is the reall size if it didnt copied them as shortcuts 
+			so when u working with pnpm u cant ever copy its node_modules to avoid this issue
+			
+			i also noticed something about monorepo:
+				is when u are working on packages which they are in monorepo the are very lighter than when
+				u work on the indiviually this 
+				i have noticed this when the storybook standalone size was 500 MB and when it flowed into 
+				the monorepo its size become 50 MB and every thing is still working i also noticed things
+				that every package manager manages the packages by different approach , i think yarn 
+				creates node_modules for every packages.json but i dont know if this is something good or bad
+				but anyway i dont love it but this made it to listen to nested configurations like resolution feild
+				every write resolution feild in different packages.json it will accept it, and u need to 
+				define the workspaces at the packages.json
+				while pnpm creates only one at the root and the feilds like resolution in any packages.json except
+				the one in the root will be igonred,
+				pnpm uses a separted file to define the workspaces but i think it also can be written in packages.json
+				also sometimes it creates files looks like it is related with npm [i dont reall know if this files to 
+					allow u to use npm or does it necassry
+				]
+				and it kinda has different syntax but this is okay 
+				but the problem of many files at the root i hate it, it generates about 4 or 5 files at the root
+				and about npm it is kinda similar to pnpm 
+				npm creates node_modules at the root and another ones when needing so it isnt necassry for every
+				packages.json to create a one 
+				the workspaces are written in same way as yarn in packages.json
+				and it only creates two files as yarn [sometimes 3, berry creates 5]
+				
+				i think the reminded package manager [for windows] we havent used it yat is rush which i heard about it recently
+				but it doesnt look so popular maybe it doesnt advance any of those by something
+				
+				
+				
+				
+				,,,i have also seen how to create monorepo by ur own [i havent tried]
+				so  i dont know if the issue with my device is becuase of monorepo
+				
+				
+				i have also tried to add our existed project [
+					our project consists of nativewind and storybook and expo router all for native and web platforms
+				] to the turbo monorepo but it failed but when i tried this is only [
+				RN storybook which consists of expo and native and web platform for storybook
+				]
+				it worked well
+				[<i have used pnpm as i told u this is recommended and npm failed>]
+				
+				
+				
+				
+				we could work around of the broken functionalities of `copy` and `paste` by programmtically
+				as i said before but this wasnt enough we needed easier way so we have registered it into services
+				and after our of working finally it works
+				
+				so we could temporatory solve the problem with `copy` and `paste` but we still cant fix the 
+				others and we dont know how i tried to copy the image of the windows , updating it , repair it
+				but nothing fixed 
+				maybe i should take a deeper look at `HKEY` of the device
+				
+				what im afriad from is data losing , the restore point was calming us but know we kinda can lose 
+				evey thing and this made me cant update the bios or buy new SSD
+				
+				after figuring all those problem im here again to ask does solito or tamagui has further problems,
+				do if those problems have been fixed they will work or it will still
+				
+				but i dont really think this will fix the vercel problem with tamagui but i think it needs 
+				further try
+				
+				anyway im still confused from my reslut tests which says the performance of tamagui is reduced
+				while tamagui says it increases the performance so i cant get it stright but maybe 
+				it should have more try
+				
+				we also figured out that for to use pdf2img in python u have to install plopper and add its bin folder into path
+				
+				we also figured out that u should have TDM-GCC-32 and glfw-3.3.8.bin.WIN64 at C to make the c++ compiler work
+				
+				also something before to forgot yarn can overrides node_modules built with npm and vice versa but
+				pnpm cant override others and vice versa
+				
+				
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V2
+
+## Other Discoveries
+
+Here are some other observations and recommendations:
+
+- We have tried to use Turbo with vercel and also adding to it `storybook`.
+    - and firstly we failed at both  but laterly we discovered a that every monorepo has to be uploaded as a monorepo
+    to vercel and it cant be uploaded as workspace this is will lead to failure , anyway becuase of descovering the error with pc functionallties [we failed to fix it] we decided to give `Solito` and `Tamagui` one more attempt , we already did too much attempts but this is change everything [knowing that the failure isnt becuase of them but me].
+    so we have got creative by this:
+        - we managed at first to make solito works perfectly but it was leaking things and so on and we couldnt add storybook into it becuase of the failure in dependacies or by unfound story files <this is new failure and will be discused later>
+        so this is what made us turn away from solito , but when it comes does it work?. yes it already working
+        so i have thought to use storybook as a template to add tamagui and i did so but then a new error has occured , and it looks the error comes from `Tamagui` compiler so here i realised it still need time to make `Tamagui` works perfectly so of this i turned away from `Tamagui` and decided and even i decided to make it with `Turbo` monorepo but again i failed
+        so this is the end page for `Tamagui` now.
+        - second thing is trying to use `Turbo` with vercel . at first i failed this is because i havent known that a monorepo should be uploaded as monorepo into vercel even if the rest of parts are not related vercel, so in the end i managed to use `Turbo` and it works well
+        - for third thing is we wanted to use storybook in our project , then firstly i made my attempts at `Solito` becuase it is the closest to what we need and well-working .
+            - so firstly we tried to add storybook as an app to `apps` directory [workspace] and we have tried the both storybook plugins [.ondevice <expo>, .storybook <nextJs>] but we failed with both  and the errors are about invalid dependaices or unfound story files , so this is every thing about first attempt
+            - so for second attempt we tried to add them as workspaces under the directory [storybooks] so add under this directory [expo-storybook, next-storybook] and again it failed and the error is unfound story files
+            - in third attempt we noticed something very important: **if there is a dependacy used in different with different version in workspaces even if they arent related to each other , this dependacy we cauase of crashing the monorepo , so u need to take care of the dependacies u are installing becuase conflict equals crashing **.
+            so after knowing that we fix the dependacies version and hurray!! it worked ......... **BUT** it doesnt working well , for more clarification : it doesnt update any statue or story file and even if u tried to use the script of storybook to update it , it failed and gives an error we dont understand [like it is related to something we dont know]. so again in the end this attempt considered failed even if it worked partilay which isnt correct
+            - for fourth attempt we did a little search and found about that the reason it wasnt workin [probbaly] in attempt three was becuase it needs a builder , and i havent thought of that becuase it works well when it standalone in repo but i didnt know in monorepo it usually require a different buillder than webpack , and the builder is vite
+            i found many uses vite as builder for monorepo but at first i thought it wont work becuase the monorepo has react native code and vite compiles react .............. **But** somehow it works , finally after all of this attempts it works . but actually we havent added vite by ourseleves or config it we actually found that `Turbo` provides a monorepo template with storybook and it uses vite as builder , but the something speciall about this repo is it was using the storybook in packages which we havent tried to use storybook at it at all, and i have seen other repos on github and some of them uses storybook in packages/desgin-sytem [instead of desgins directory] , but this repo was old with old dependacies  [SDK 46, Next 12v].
+            - so from here comes a new attempts to make the perfect monorepo we need that contains every thing 
+                - and again from we started our first attempt , and it was to add nextjs to this monorepo of `Turbo` beucase this monorepo was only having storybook while the normal monrepo of `Turbo` has nextjs . 
+                anyway we tried to add nextjs to it and we failed but it looks the error is related to compiler of ES becuase in README file of repo it explains it used new way to work with stroybook which is `tsup` and `tsup` looks like a compiler for ES but it also used Vite , and im thinking maybe there is conflicting in dependacies [i dont think so becuase the error doesnt look so], or maybe the error the tsub isnt compatiable or needs config for nextjs . i really dont know but i havent tested to much becuase there is another error which it is unfound story files , and again this error is repeated too many , and i dont know where it comes or how to solve it or is it known or something like and does the error related with storybook v7 in monorepos or what , but what i know it fires when copy the monorepo with its dependacies [even with robocopy] or sometimes i dont know when, but i think this error occurs at monorepos only becuase of their complicated structure and i have noticed that u have to make the alis paths into storybook and tell it what to compile and so on , so in the end stroybook has a bug in monorepos and it requires more config and builder where it gives unfound story files and nextjs didnt work tsup with soft working around 
+                - so for second attempt we got a feel we arent going anyway with turbo so we decided to go back to `Solito` for further tests to make it perfect , and after little searching again we have found a repo which it uses storybook with `Solito` so we have tested and ............. HURRAY !! , it worked .
+                we tested stroybook and it worked , we tested next and it worked , we tested expo and it worked, we tested tailwind and it worked , we tested css and it worked , we tested dependacies and it worked, we tested scripts and it worked , HURRAY !!!!! we are one step of the best monorepo and the last test is to make it perfect monorepo for us , is to test `Moti` 😄, **BUT** 😢 it throw an error and i found a lot of people tells it is a headache to make `moti` works with it, and really i dont know what is the problem that makes storybook doesnt work `Moti` is it becuase of vite config or storybook config , only thing i know that the moti uses `.mjs` file which it needed to be compiled and it looks like the workaround with it, and without `Moti` we cant show any animation on storybook which is something not nicely so we have thought about like adding `.ondevice` to storybook but we actually we dont know how to add it or where , and we tried to change in the config and this leaded to error and we tried to use some other dependacies , resolutions and we failed
+                so for now we couldnt solve this issue and we dont know if it is solvable or not so we tried to use something else other than `Moti` and we tried `reanimated` and it looks the error comes from `reanimated` thats what made `Moti` doesnt work becuase `Moti` is layer or wrapper of `reanimated` , but we tried the built in `animated` in react native and it worked but it is not the animation whcih we need , i also know we can use css animations but this is would be more effort and harder . so in conclusion we decided to use this monorepo and we will try to work around with this little issue with praying to be solved 
+                
+    - so to clear things have not been cleared : 
+        the unfound story files : is an error tells that the compiler or builder didnt find any story file even if the main.js content field is configured perfectly and i dont know why it doesnt so
+        vite has little thing u need to take care about it : is the jsx code should be written in .jsx file and so or it will raise an error or wont be compiled so the previes.js in storybook have to be previes.jsx becuase it use jsx and also u can do something different if u dont want to change files extensions, is by providing aliases to extensions and i think u know that i mean
+        in every attempt we did or test i want just we say we used every possible knwon package manager this is means we have tested all the testes again and again and again with [yarn, berry, npm, pnpm]. and mostly pnpm faileds and some of berry and i think npm did good in all but i still dont like it 
+        moti didnt work in normal repo but with some effort we made it work perfectly so i think we also can do this for monorepo
+        storybook should have some config in pipelines with turbo and i dont know if it is neccassry 
+        storybook can work without submodrn in the config
+        storybook essential are 6 apis in v7 and 4 in v6
+        we havent tried src directory in our monorepo but i think it should work normally 
+        prettier was making error in some dependaices when using npm only
+        yarn gives error if u are installing dependacies arent compatiable with ur pc [hardware], while npm and pnpm ignore it 
+        npm doesnt understand "workspace:" as a value in monorepo so u have to use "*" or the real version
+        we dont  know what is tsup and we dont know if next is gonna work without it becuase when we tried next with it we used tsup
+        we dont know any alt for moti specially solito use it and using other one may give a conflict so `Moti` is the only solution to use if u are going to use this monorepo, however it works good but not for storybook 
+        we dont know if the ui components for tailwind is going to work universally perfect or does it even gonna work
+        we dont know if the plugins for tailwind gonna work universally or not 
+        it looks to config vite there is a files [index.html, index.css, ] so i dont know if those files are affecting the output or just for configuring or do they  only effect storybook
+        adding ondevice then remove it crashes the monorepo dependacies 
+        turbo generators didnt work but i think there is mistake from me so i think it would work greatly 
+        if still we are goind to use this monorepo and the plugins failed to work universally this will lead for more affort from us and making our own ui components specially for web and native
+        we checked that the logic can be shared there is no problem 
+		
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V3
+
+	firstly we established working with solito and for this we have first to fix its problems , one of those problems 
+		was the moti in storybook which it is which we did so much to make it work with a lot of tests and attempts	.
+		we attempted to config it in vite.config with a lot a lot of configuration and tries and it only gives error with setimmediate
+		or with __DEV__ var [not declared] and so on 
+		and we noticed something that we was doing wrong that we declared the __DEV__ at main.js while tried the config in vite.config
+		so we decided that main.js is the place where it should contains all the config and we did it but now it throw the erorr `setimmediate`
+		so after searching we figured out this error comes from the environment of the reanimated code SO THIS IS
+		MEANS moti DOESNT HAVE ANY PROBLEM BUT THE PROBLEM COMES FROM reanimated
+		so we firstly tried to adjust the code by ourseleves but for somehow it wasnt working and i felt like 
+		our adjustments dont have any effect so again after more searching we rememberd that there is files for this 
+		things [incompatiable techs] which they are [raf <raf/poly> and setimmediate] and yes we already download them
+		but the problem is where to put them , then after understanding storybook i figured out that preview.js is the main
+		entry for storybook so we add it there [at the first top imports] and HURRAY finally it worked but 
+		we noticed things which are :
+			if the order is set right it may not work 
+			reanimated doesnt look to animate but it works without throwing an error ,
+			while moti works perfectly and it is the one we need , sometimes i imagine that reanimated doesnt
+			work becuase it doesnt work for web or it should have a way of configurations to work 
+			but we dont care as moti works perfectly
+			
+		
+		it was hard to make moti works but here it comes the second challenege 
+		secondly we have tried to use `.ondevice` as we finally could use stroybook as want
+		but we tried many times we failed , firstly:
+			 we tried to do the same as we did for stroybook but failed with errors from `.ondevice`
+			 so we tried to make it normally and use it but it gave an error look like it is related
+			 with react-native [expo] and the error was like `failed in textDecoder` or something like that
+			 but are not caring to much for `.ondevice` BUT while we was trying to use `.ondevice` we got further problem
+			 which it is :
+				
+				the `.env` file doesnt work , we find out that .env files not work directly in monorepo which we tried
+				different approach to address this problem  we tried to put the env file in the root and it didnt work
+				and in native and in packages and it didnt work so we have thought that it should have speciall config for this
+				so we tried `dotenv` package and it didnt work but this time it throws an error related with node
+				which tells react native doesnt come with any node utils [sa path which was needed] so i did a search and find out
+				to use one the node utils in react native u have to use a package called `nodify` which adds with it u can add a node with it 
+				but i didnt take a risk and i didn want to add a node package which may effect bad on react-native or it may have side effects
+				so i figured new way which is `dotenv-mono` which it used for monorepo but again it needs the [path in node] . However,
+				it works on web
+				so i decided i have to get something is dedicated for react-native not just monorepo and i found
+				`react-native-dot-env` or something like that which allows u to import .env files sucessfully in react native
+				but for nextjs i think it is easier part than react-native so i let it to another time
+				but `react-native-dot-env` unlike other .env utils where u use it throw `process.env` this one 
+				makes u to import the env thought `import()`
+				
+				so in breif here , we managed to use .env in react-native part but we didnt pass in `.ondevice` nor globall .env
+				
+		secondly we spent time understanding of how eslint and prettier and tailwind would work and vs code extesnions:
+			we have tried in this stage `prettier-eslint-config` which is a small util tells u if there is a conflict between
+			eslint and prettier we also understand the `prettierrc` and how to config it but when it comes
+			to plugin part we dont know if it is works or no but anyway
+			we added many addons into our eslint and we configed our vs code and now it works good with both of them
+			NOTICE THAT sometimes prettier doesnt do all things as eslint :
+				where prettier doesnt delete dublicated things while eslint does
+				
+		thirdly is to make the component universally, before of all of this we knew that we cant use react-native third party packages
+		to work with nextjs and this is was a drawback but in this stage we kinda make it :
+			we used in our testes here a `react-native-paper` first of all to tried to include it in next.config in tranpsile
+			and then we noticed that it didnt work ; BECUASE THE `import`, `require` STATMENTS 
+			we tried in many different ways to see if the `import` or `require` would work but sadly nothing have worked
+			then we noticed that next comes with another import statment `dynamic` and we tried and it worked by for bad
+			it didnt work on native i think it is becuase its associated with next or something like that 
+			
+			so we needed to think deeper for further way so we thought what about an indirect import which
+			direct import is like `import {Button} from "react-native-paper"`
+			and indirect is like `import {Button} from "react-native-paper/src/components/button"`
+			
+			but u know what it worked in both web and native platforms so this is the way of using third party services
+			BUT , nothing is completely we found out that this indirect import may effect bundle 
+			and for some reasons it doesnt work on storybook and i think this is becuase in modules in node_modules
+			they are actually exported this way module.exports = moduel_name
+			which maybe the reasons where it doesnt work with storybook but how ever it is not big problem after all
+			
+			but this is wasnt everything . becuase of this package new errors occured at vercel , and those errors
+			are related with the package [i dont know if this package specially or any third party services]
+			and the errors was comming from tailwind where it catches some type annotations error in the package itself
+			but the problem wasnt here becuase we can easliy fix this by ourseleves but the problem is when we upload it into 
+			vercel this is means our adjustments in node_modules wont be applied and this is will crash the build
+			so we got to think for further idea and here we found this `patch-package` which it a util allow to 
+			patch a package [in node_modules] and the adjustments will be applied so this is fixed it [but it time consuming]
+			and we found another way which it is yarn-patch which it is built-in but we couldnt use it becuase
+			it gives error related with git and i found out this error is related with berry but i havent tried to fix it
+			becuase we already did it with `patch-package`
+			
+			but becuase of this we could understand things about vercel and how to address the errors comes from 
+			vercel and noticing something looks werid that u can run the code at ur local machine and it wont throw an error while
+			if u tried it on vercel it would throw an error and it is not a bug at vercel but for some reasons 
+			vercel is better at catching errors and it doesnt bypass the errors [and maybe this is related with cache]
+			
+			but this tought us and it was also a chance to start working with git and trying push and commit in git
+			
+			and with this we finally understanding why tamagui wasnt working at vercel before and i think we finally we can
+			make tamagui work as we like but i have made my mind and i wont use it or for now becuase untill now
+			i didnt understand why it gives poor performance but i have thought that, it maybe becuase of the comilation
+			where it shows 0 compoent have been optimized and i think i know why they arent optimized
+			
+			but Bro.... this took to much to understand those things about two months with trying and failing
+			
+			but we finally understanding it
+			
+			
+			
+	i think for fourth thing to tell is about our tests in solito:
+		was some of obstracles in soilto also that using image component where native image component
+		works only native and vice versa we even tried background-image and ImageBackground and image component from
+		from moti but all failed to work universally and there a solito comes with SolitoImage which can make the images works universally
+		by using expo-image for native and image for nextjs which allowed finally to work
+		BUT , expo cant handle realtive path as next where ur path starts with `/` and next handle it into public folder
+		but this is working for expo , so i think if we are going to use it we have to use the image from a website like placeholder.co
+		and we tested some conditions , but we kinda surpprised with the resluts that both platforms can handle images from extensions 
+		[jpg,jpeg,png,webp,svg, ...etc.] they work on both even native platforms which supprised me but there is a little thing i have to say
+		is if the path for image doesnt have extension like `example/image.png` may not work
+		so this `example/image/png` or `example/image` may not work 
+		
+		and also `react-native-svg` works good on native 
+		
+		but we have only a drawback on SolitoImage component that it throw an error if `resizeMode: 'repeat'`
+		and it gives it is deprecated and objectFit nor style.resizeMode = 'repeat' have no effect i dont know why
+		but it doesnt repeat 
+		
+		
+		
+		also we did tests on tailwind which they cover `plugin` built-in tailwind and as expected the styles that can work 
+		on native worked and styles that works on web worked like `blur` but for some reasons sometimes it doesnt work at
+		all and we dont know why this is , but it is look becuase some styles not for native have been provided
+		
+		and we also tried to use a plugins but it looks like it works only for web this is becuase the used styles are css
+		but this is okay
+		
+		also noticed something in tailwind that it cancels the the effect of the tags like `h1` will be like a div
+		and also this is doesnt considered as a problem
+		
+		and we also we have tried to use svg icons and to see if they gonna work universally
+		and we find out this :
+		
+			import { BeakerIcon } from "@heroicons/react/24/solid"
+		    {/* Didnt work on native */}
+            {/* <BeakerIcon className="h-6 w-6 text-blue-500" /> */}
+			
+			// import { Check } from "iconoir-react-native"
+			{/* Didnt work on both after reloading it throw error on web */}
+            {/* <Check color={"red"} /> */}
+			
+			import { Camera } from "lucide-react-native"
+			{/* Worked on both */}
+            <Camera className="text-blue-500" size={48} />
+			
+		
+		and there is more to use and test but we are good with lucide icons it have over 1000 icon and different utils
+		for this
+		
+		
+		and we also read a bit in solito doc and it tells u to create a directory or more for icons like `icons`
+		and make every icons as a module becuase as u know in vector icons all icons are in one file while 
+		the svg icons every icon in different file so u should make a module for it for proper tree shaking
+		
+		
+		and it looks there is a way to handle scroll in solito and it looks also there is packages for solito 
+		i havent noticed before like `@nandorojo/anchor` which gives u the utils for like `scrollTo` and so 
+		which those utils only works for native and with this u can make it universally
+		and also there is `zeego` but i dont know what it does 
+		and also solito recommends if there is something works for one platform to make a different files [.web, or .native]
+		to enhance tree shaking
+		
+		and also recommends to use firebase with it and it shows how
+		
+		and we think utils like calc function in css will work on universally but we noticed that it doesnt calc
+		if the value are like `calc(10vw-1%)` becuase maybe viewport is dynamically and it calcs at build time not runtime
+		
+		
+		
+		but im still thinking we need further tests like testing videos , like testing animated image, like testing
+		motify component, like testing lottie, sound , input files [file system] , ...etc
+		
+		i think we should make a list of things that should be tested
+		
+		i also figured out that somehow react-native-paper considered to have extensive components becuase there components
+		are compatiable to work with web [like when pressing space or enter it triggers the buttons]
+		
+		and also solitoLink makes a real link where it shows the url in the bot-left side like an url
+		
+		and also i discovered reat-native-responsive-fontsize and i found out it is just using a window dimensions
+		not aspect ratio or pixel ratio or anything so however it works it is kinda dissapointed me
+		and i think i can make better than it
+		
+		
+		and also i have noticed that 375 is common or standard width while 680 is common or standard height
+		and there should be speciall styles for api 21, 17, and iphoneX
+		
+		
+		
+		and i think we also need to get better know of thing that tailwind also provide like aspect ratio and pixel ratio, ...etc.
+		
+		
+		
+		
+		we have thought that maybe compoent libraries for tailwind may work globally but the styles that are not
+		acceptable on native wont be accepted
+		
+		
+		and we also noticed that when u build a component it is better to make a module even if u wont change something
+		so u have to re-export it and u have to override its props to be perfectly compatiable with web
+		and so on 
+		
+		
+		and also in react eslint u can like provide accessbility names to ur compoent for better accessbility
+		
+		
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V4
+		
+		there is not a lot this time , but the news is we tried to use media with solito and this is wasnt easy
+		but we managed at the end to make it work and it looks like it supports features of the browsers
+		like we tried to add Video component but it worked on native but didnt work on phone , we tried other solutions
+		as use alternative becuase we at first we used expo-av but this is throw a lot of errors specially for a package
+		called `@react-native/assit-regestriy` so we tried another approachs but we found out most libs are for react-native
+		not for expo and even expo-video-player uses clear development build and two other libs
+		so we knew that we dont have another choice than using expo-av but this is was kinda chanllenging 
+		becuase the `@react-native/assit-regestriy` contains syntax error and it use `flow` and for some reasons
+		looks like webpack isnt compatiable by default with flow or it isnt accept it at all and 
+		the files inside ``@react-native/assit-regestriy`` was using javascript and flow which throws an error
+		then we realised that we can re-install this lib but this time it will be as standalone lib
+		and after we downloaded it looks like its still having the syntax error and flow syntax so we modified it by ourseleves
+		in node_modules and convert the file `register.js` into ts file with ts syntax and it stopped
+		to throw errors related with syntax but it looks like u have to include 4 modules in transpilePackages
+		to make it work and after including them it is now working perfectly  with all features of browser
+		
+		NOTICE THAT  we havent tested sound as its own or even recording but it looks it would work perfectly and if it throw
+			an error it would be related with javascript and flow so we have to do the same
+		
+		and the second challenege was adding lottie which we noticed werid behaviour that lottie works perfectly
+		on native with version v5 while it works perfectly on web with version v6 so it was hard to make a version
+		for each platform but we found out if u specified the version in web expo workspace it wont broke the monorepo
+		and instead it will override the existed version which we wants and also to made lottie works on web 
+		we had two include two additionl packages which are important for that and we also have to set
+		`expermintal` in next.config which gives a warn this is could crash the app , but it looks like it works fine
+		also lottie supports things i will discuse them here:
+			it has webStyle which is different from different style [native]
+			it has hover effect exists init
+			it can use animation apis like animated or reanimated [they didnt say something about moti]
+			but i think moti should work also as reanimated works but there is a little thing that to use 
+			those apis with moti it looks like u have to use the prop `progress` which is not suppored for web
+			so we dont know if this is gonna work or not but it looks it works smoothly on web so i think we dont need that
+			
+			we tried raw classnames but it looks without effect but when we used `styled` we managed to use classnames
+			we also tried variables in classnames and it works but we found out that tailwind classnames doesnt
+			accept dynamic variable and it recommends using normal style in this case becuase it considered this
+			class didnt exist and so on , we also tried calc function in tailwind and there is something about it
+				DONT USE WHITE SPACES IN calc INSIDE TAILWIND CLASSNAMES
+				
+			we also noticed something we havent noticed it before that Dimension from react-native gives
+			0 width and 0 height on web , it looks like it doesnt work at all on web , i really dont know 
+			where is the issue is comming from, as we even tried event listenere `resize` and `window` 
+			and it also gives only zeros and we dont understand is this is an issue or bug in solito becuase it compile the code
+			
+			
+			*/*/*/*-/-*/*-/*-/*-/*-/*-/-*/*-/*-/*-/*-/*-/-*/*-/*-/*-
+			NEW ANNOUNCEMENT:
+				we have found out that it gives zeros at the terminal where the code is running
+				but it gives a value on the console of the web and debugger of expo , so i think it gives zero becuase
+				it is a monorepo and the terminal considered the width where it running `packages` or something like that
+				but anyway it works perfectly but it looks like the issue of tailwind havent been fixed where it doesnt accept dynamic 
+				variables , but at least we know that Dimension and useDimension is working perfectly and even event listenere
+				NOTE I DONT KNOW IF EVENT LISTNER WORKS WELL ON NATIVE BUT HOWEVER IT LOOKS LIKE WE WONT NEED IT
+				 
+				
+				WE STILL HAVE TO MAKE TOKENS FOR OUR APP:
+					which will be a fixed or constant classnames for easily fixing
+					
+				and we also have to think a way to make reponsive font size and layout , 
+				 
+				 
+				 
+				 
+				 
+				 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V5
+	we have tested many tailwind components ui some of them was using classes and others as flowbite was using components
+	the one uses classes didnt give any error on native but still didnt rendered if it has non native styles 
+	but the one with components gives an error in native related with boxshadow but i still dont why , however if we write boxshadow by ourselves it doesn't gives an error which it was werid behaviour but anyway even if it didn't throw an error it wouldn't render and i have searched for any ui component for nativewind but its negative!
+	but while im Searching i found something interesting which it is a template of expo made by obytes on thier official website.
+	and i decided to give it a try to figure out what does it provide
+
+	and i found out it has many dependacies and well set which makes it like a pro template
+	it is an app uses auth throw zutsand and mmkv and it supports dark mode and even multi language included arabic
+
+	and by this template app it awared us about the importance of env file which this template has different structure i havent seen before and it looks well set
+
+	and because of this i noticed that expo supports 4 build profiles [development, staging,test, production]
+
+	and it was uses those profiles in the app and some eas hooks
+
+	and for testing it was uses jest with other helper libraries and it was uses new tech i havent seen before called maestro which its e2e testing for phones
+	but i didnt get a chance to try it because it throw an error on eas (which we have fixed it later and it will be described later)
+	but for other functionality it works good
+	and also i have tried to install maestro but it looks like it has no release for windows which requires me to use wsl
+
+	so i turned away from installing maestro
+
+
+	and i tried to increase my knowledge in deployment patterns
+
+	and I've found expo well documented the development patterns and they are 4
+	but for nextjs they didnt mention it at all
+
+	but i have learned from expo the importance of staging phase and how is the deployment goes
+	and also i have seen videos in YouTube on how to deploy on Google play
+	and how tests works on Google play
+
+
+	so i have realised that to make the full template app of our own we have to set the testing utils and frameworks within the app and also setting the environment variables
+
+	so what we need now is 
+	jest for unit testing
+	rendered for component testing
+	or @testing/react-native
+	e2e testing and for this we will need two of it as one for native and other for web
+
+	in native we have two known choices [detox, maestro]
+	and for web we have a lot of choices[playwright, cypress, vitest, puppeteer, selenium, ...etc]
+	but it looks like nextjs supports well [playwright, cypress, vitest]
+
+	so we gonna use one of those three
+	Moreover we have tried to use cypress and playwright
+
+	we found out cypress has better syntax and more user friendly interface but it looks it supportd only three platforms which they are chrome , edge, electron
+	and i dont know if we can change the version , also it looks it have paid features or something like that, but it provides u with coverage of tests, a video for test, a headless test, and it also supports components testing
+	and also cypress provide easy config
+	and it looks like it uses the browser in ur local machine 
+
+	while playwright it uses its own browsers which they look like an instances of every browser and it saves those instances at Appdata local
+	it has more complicated config and it looks like it is more advanced than cypress
+	but for some reasons safari didnt work i dont know why
+	also it doesn't provide component testing and its default is headless testing and it looks like it doesn't provide coverage but may it provides because i haven't checked the api yet
+
+	but for vitest i have tried it because i think cypress and playwright are the best but i still didnt make my decision but i will give vitest a chance specially as they said vitsest is built over vite and we are using vite as a builder for storybook so may it wont be a bad idea anyway
+
+	we also tried to use storybook with playwright and cypress but we havent finished the tests yet so there is no results for now and we may delay it for another time because this is optional but we founf in documentations that to use e2e test with storybook has a limitation with any e2e i found 
+
+
+	anyway we managed to use jest in our app by a lot of effort throw fixing errors and it we fixed all those error by babel.config in monorepo root with preset expo
+	and now jest works well
+	but before we noticed it looks like we somehow crashed our native app and with a lot of testings we found out we crashed it when we changed the dependacies throw check-deps package but we still dont know which package gives the error specially the error looks related with css and i sus tailwind
+
+	but this is wasnt the only error , we found out that jest junit throws an error and it is related with crypo or random value or uuid i dont know but to fix this error we have to install react-native-get-random-value
+	and import it first in index.js of the root of native app
+
+	and we also tried to add changests in our app and use it but we still don't know
+	and also tried to learn about CI/CD
+
+	and we found three popular ones which they are travis, circleCI, github actions
+
+	but we still don't know if we need them or not but we will figure out soon
+	and they look they consist of workflow and actions 
+
+	and we also knew validation libraries as zod , joi ,and so on
+
+	which it creates a scheme
+
+	and i have found out in obytes app that they use the scheme to define which development phase u are using 
+
+	and we also found out eslint plugin called unicorn which it looks popular one 
+
+
+	we also discovered something important about storybook that the error or the bug that tells there is no story files found however even if the content is well set 
+	the bug was because of the para brackets inside the path 
+
+
+	im also dont know if we need jest with storybook but we figure it out soon
+
+
+	and we also did tests to try to make detox working and first error we have meet is error related with permission denied on eas as we did eas scripts hooks but when it is time to be excuted on eas gives error but we solved this error by putting the word `bash` before the command where it tells the eas to use bash to excute it 
+
+	but the seond error was comming from out script which our script shoudl awake the emulator but for some reasons it wasnt awaked and the expo doc explains that detox (oh i forgot to mention i was making tests on detox) has a bug or its complex to make detox works fine on android unlike ios which they say it works well on ios 
+
+	and also even if i didnt upload the build into eas and try it to make it locally thete is something we didnt know before 
+	but firstly let me describes what happened
+	to make detox works u have to make for it two build one is the default build u make by expo run:android and this build should be release not debug build, and the other is test build specific for detox 
+	to get the detox build u have to run the gradlew command (NOT ./gradlew) and this command will make the build for detox , something else it looks like even if u are opening the phone the phone had to be awaken unless the test will fail, 
+	also im actually dont know if creates a detox build on the emulator or its just same build and i dont know if we can use different emulator and will it work or not
+
+	anyway we are sufficient with the succeed where we succeed to use detox (note we haven't tested interactive tests, we only used text component and match to be visible, so we dont know if it working 100%)
+
+
+	i think we also needs to understand how detox or maestro works , does they only be sure the js coded has been executed or do they go throw native ability and checks becuse react native doc has mentioned that api like renderer or @testing
+	checks only if js code excuted without going throw native code or ability
+
+	so i think we have to know better
+
+
+	i think as we now managed to use detox in isolation (single repo) it would work on monorepo 
+
+
+	i think we also in our app we have to determine how we are going to use the component or what i mean how is our pattern will be , and how we will resuse the modules
+
+
+	and we also found a book and articles talk about development pattern i think we can reuse it too
+
+
+	we have also tried expo/@testing library but for some reasons it gives an error related with path which it says it wants to use node utils however react native doesnt support it so i dont know if really expo tested this lib or it just throws it, also it looks react native and expo dont provide good maintenance to testing api and they dont provide too much
+
+
+	we also find out that playwright, cypress and maybe other arent compatible with pnp of yarn 
+
+	and also expo mentioned this is before that pnp had no compatibility yet or it has further configuration but u still can use yarn berry version 3.4
+
+
+	i also have tried @react-native-material/core but it give error inside react-native but there's nothing there
+
+
+	we also give another final chance for responsive fontsize to work web but still no result with tailwind
+
+	we also found out new units can be used which they are lvh(large viewport height)
+	dvh (dynamic viewport height) svh (small viewport height)
+
+
+	we also found out that the named export said to be better than default export
+
+	we also have settled the theme for tailwind and test it and it works fine and we also tested the variables and they are Also works fine
+
+
+	we also have found out how to use fonts api in nextjs and we have set out fonts to be used across the platforms , we still dont know why there is special style for api 17 and 21 and iphone x, but we'll
+
+
+	and i tried them on tailwind and it rendered it but i dont know if it rendering dvh or svh or lvh as vh or it renders them right
+
+
+	but really i dont know because i dont see any differences, and also i found on stackoverflow they recommend u to use it as layer or plugin and do something like
+	.dvh{height:100vh; height: 100dvh}
+	so with this u can avoid incompatible browser 
+
+
+	we still dont know how the tests is happen when we push it into Google play but we only know we can make a test release which some people only can install it but what i dont know how to test it like that or does it should be tested like normal app
+
+
+
+	 
+	new announcement,
+	we have fixed the error related with native workspace which is related with css and the error was coming from packages/app/package.json from the version of tailwind which it was having `^` 
+	i think this error becuase of our ignorance
+	as we havent know till now what are those operators do
+
+	and after making the tailwind version 3.3.0 not ^3.3.0
+	it comes to work again and we could continue our universal app
+
+	we have added detox and its related config and we have build it and by the time it worked finally
+
+	now we have settled jest for unit testing and renderer for component testing and detox for e2e testing
+
+	and we have noticed that the command of detox build it actually makes two builds one of them is release (if not exist) and the other is detox build 
+
+	and we also noticed that while building we get some warnings and most of them says those logs are warnings in v7 of gradle but when using gradle 8 it will become errors and i think  this us tells why the build crashes with v8
+
+
+
+	and we also have known a bit about packages version:
+
+	`^` this is updates the package but dont exceed the major update like if 
+	version is 1.2.3
+	it cant exceed or reach 2.0.0
+
+	`~` it allows any version from 1.2.3 but to not exceed or reach 1.3.0
+
+	and u can also use comparison operators like greater than and u can use logical operator like or operator but they call it here union operator 
+
+	and also there's some keywords as workspace (with yarn) or latest 
+
+	`-` it is used to specify a range
+
+	i think this is cover them or most common somes
+
+
+	this is a things we understand of comparison between cypress and playwright
+		cypress:
+			beneifts:
+				it is easy to integrate and config and use
+				cypress has unique manipluation throw DOM
+				it supports chrome, electron , mse
+				it can captures screen shots during test execution [called comprehnsive test insight]
+				it provides friendly debugging approach and readable errors and it works with developer mode
+				cypress has unique built-in waiting which makes the user doesnt need to use at all commands like sleep(time)
+				cypress offers functionality-like unit testing with capturing many things as  [server response, timers]
+				it allows for network traffic manipluation
+				has cypress studio which has record tools and functionality and it have to be config in the config file
+					throw `experimentalStudio: true`, `experimentalWebKitSupport: true`
+				consider to have better syntax that can even a non-developer understand it
+				has perfect docmentations
+				good parallism built-ins which allow for parallel instances and parallel machines
+				provdes utils for HTTP requests and functions, allows for validations , assertion and ...etc.
+				offers mocking specially for APIs
+				offers plugins for API
+				comprehnsive for real and remote devices
+			test flakiness solutions:
+				becuase of the arch of cypress it managed to reduce the test flakiness with a proper promise
+				it provides auto waiting and retry
+				it provides control over test runnner and the environment and ...etc
+			considerations:
+				inability to make instance multi broswer simultaneously
+				lack of multi-tab testing
+				recommend to use javascript
+				leak for mobile support and limited resources but supports the viewports of the phones
+		playwright:
+			beneifts:
+				it works directly throw websockt instead of HTTP requests
+				they implement they own protocols for broswers
+				it has unique feature of cross-broswer support
+				can run complex tasks as `spanning multi paga and multi domain`
+				network manipluation but with differences than cypress
+				enables file upload and downlaoding sceniors
+				native input test [allowing for interactions with mouse , keyboard and so]
+				enchanced testing throw broswer conext and parallel test execution
+				integrations with CI/CD
+				integrations with docker and cloud systems
+				has code generation: it generates code as u interact with the broswer
+				async test code
+				comprehnsive support for mobiles
+				provides functionalities for manipluation the url and api 
+					like validations, custom assertion , ...etc.
+				provides auth and secuirty
+			test flakiness solutions:
+				for playwright , it used its advanced features to handle it properly
+				it uses async code and promises [made it more reliable]
+				it has built-in wait
+				it provides network manipluation and interception
+				
+			considerations
+				steeper learning curver
+				not huge community as cypress
+				may it be limited of extensions and tutorials and so
+				it needs more imporvment over thier doc
+				needs test runner to support parallism but it provides faster execution
+				cypress considered used by 2x or more than playwright BUT it ranked number 1 as most intersted
+				
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V6
+	this version is written in short time if u compared it with the others but its importance in its infos
+	anyway this what i remember for now :
+		we have learnt about CI/CD and what they are and what they are used for and how 
+		i dont say we learnt a lot but i say we got a knowledge.
+			firstly: CI/CD are used to runs auto tasks that it will be tideous if u did it by yourself
+				and it help in catching some errors, bugs, providing good commits ,minifications, conditions 
+				like for Pull requests or pushing and so on and so on , it is mirroring ur needs only 
+				but they come with some additionl packages if u want to use them effectivly like [husky, lint-staged]
+				where husky provides more further into `git` throw hooks and one of the most common one is pre-commit and more
+				and lint-staged is just do things at lint-staged phase [commes after commiting and after them is push and after them is merge or publish]
+				it is good package becuase it only triggers the packages that have been changed and commited [havent pushed yet]
+				and u can beneifts from it like applying testing on the the changed files only becuase applying
+				on all files is considered waste of times and so on
+				
+				
+				and about the vendors of CI/CD they are likely over 40 vendor and mostly of them provide free trial or they are free
+				vendors like [github actions, gitlab CI, travisCI, circleCI, jenkins, bamboo, teamcity, ...etc.]
+					
+					github actions: is free but has a limit and its cloud-based, nice syntax, popular, easy config,
+						fully integrated with github, u can do mutli container ops throw docker, u can choose multi 
+						CI templates or create ur own, u can manipluate development
+					gitlab: is not free but have a free trial and __ i havent tried it and i dont think i will becuase
+							at least i want a one which is free wihout a limit of time 
+						__
+						,
+						it provides deeper integrations into third party services, advanced caching, support parallism
+						have a migration for tools like jenkins or circleCI , ...etc
+					
+					travisCI: it is not free but providing a free trial , it supports many languages as C# , python,
+						more privacy and secured [enterprise], provides self-host and cloud SaaS, supports parallism
+						, supports orgs like AWS, Auzre , ...etc
+						
+					github actions is free but has a limit and its cloud-based, nice syntax, popular, easy config
+					
+					bamboo: it is not free but providing a free trial, have parallism reaches about 100 agents, supports jira, supports
+						orgs as AWS, bitbucket, can be self-host or cloud-based
+						
+					jenkins: it is totally free without limit and it is preferred or loved by many and it looks in 2018
+						was the most popular CI/CD, it is self-host only, support many OS even docker, highly extensible,
+						it have many plugins that can reach over 1500 plugin, integrated with popular orgs or cloud system as
+						AWS, Auzre, can work on complex tasks and its used by many from small-scale till large-scale
+						, supports parallism, but it require some presquites like java , wsl, and so
+						
+					TeamCity: it is made be jetbrians, it is free trial, highly extensible and customable, supports parallism,
+					it used java and kotlin so it indicates of its effiecnt, integrated with a lot, has features like
+					enable running history, viewing test progress (and history) reports on-the-fly, and adding builds to favorites.
+					
+					circleCI: it is free but have paid plans, easy to set, it used by large-scale projects, compatiable with a lot
+					of VCS , it is piplines is like-workflow, supports many programming languages, has advanced features
+					to reduce the build time throw sharing the build across containers, supports parallism, advanced testing
+					feature, integratable
+					
+					
+				i think those are all what we need to know , we have checked most of them and it conclusion we are going to use the 
+				one provides free without limit of time and becuase of this we got two options only:
+				Github actions																	CircleCI
+				both of them has its pros and cons and our project and presquites will determine which one to use
+				
+				
+				furthermore, i want to talk about that i have seen circleCI and githubCI used in many repos on github
+				but i dont know about the others does they have special directory indicates that they are used or no
+				i only know that .github, and .circleci indicate to both of them but i dont know about the other
+				
+				i think u may ask why not jenkins as it was one of the most popular one in 2018 [ranked 1]
+				i think this is becuase i dont like self-host and i prefer the one that easy to set [setup] and easy to go
+				like a one we can call PnP [plug and play] and github and circleCI provides something like that
+				
+				although i have thought about using teamcity but how can i say ....
+				i care to the community and teamcity isnt considered popular as jenkins or github and so
+				,i do so becuase i need a guide at my start
+				
+				
+			secondaly:
+				anyway we figured out the env files works in next proj but we find out two things:
+					any key with prefix NEXT_PUBLIC_ can be exposed and rendered as a text normally
+					but any env var instead of this cant be rendered as a text and it throws an error
+					but it isnt undifined but actually it is defined and works well but cant be rendered
+					i havent tried this for expo but i think any key with prefix PRUBLIC in any supported 
+					env variables will be rendered as text without error otherwise it gives error
+					also it looks nextjs  has werid behaviour related with hydration which it sometimes throws
+					errors like if u have used <p><h1></h1></p> and so 
+					
+				and we still dont know if the plug
+				
+			thirdly: we got a knowledge about something called git branches stratgey which it could be now an outdated
+				while CI/CD are used nowadays but any way i think even we are doing things soley we may uses
+				branches becuase just pushing to the main corwd it and make it hard to maintain so those are branches 
+				i have thought about:
+					feature[s]: which it is a branch should be used if there is new feature or screen or page or components
+					testing/envy: which it is a branch should be used if there is new test files or related with testing soley
+					fix[er]: which it is a branch should be used if there is a fix or debug for something specifically
+					crowdy: which it is a branch should be used if there u want to try something or any thing 
+					
+				also we get more knowledge about git stratgey and see if we can use them together becuase i want to make a conditions
+				with husky and CI/CD and lint-staged to detect if the right branch have been used before commiting
+				and what the commit have and also add a counter of how many screens/features have been add or or how many 
+				soley testes have done and so
+				
+				
+				we also need to update turbo to work gracefully with us 
+				
+			fourthly: we learnt something called glob patterns which is like a simpler strings of regex
+				where it is usually used for configurations and catch paths
+			
+				`?`: matches only a single char to be used instead of it or nothing BUT NOT `/` 
+					as ca?.txt would match car.txt, and cat.txt, but not cart.txt. 
+				`**` matches any number of chars and no matter how deep it is in subdirectories
+					notes: // Match a/b/z but not a/b/c/z
+							a/*/z
+							// Match a/z and a/b/z and a/b/c/z
+							a/**/z
+				`[]`:Matches any one of the characters inside the brackets.
+				`{}`: Used for grouping and specifying alternatives.
+					Example: {js,ts} matches either 'js' or 'ts'.
+				`()`:for grouping
+					Example: file@(1|2).txt matches either file1.txt or file2.txt.
+				`!`:for negation:
+					Example: !(*.txt) matches any file that is not a .txt file.
+					
+					
+			fifthly: we also noticed many things about env in both nextjs and native and NODE_ENV
+				and it looks like any tech has three the phases usually [development, test, production]
+				and u can trigger those phases usually u can do it with NODE_ENV but it isnot usually
+				, as for nextjs they dont recommend to use NODE_ENV , and they recommend to use:
+					dev [development] and start [production]
+					test [not recommend or not usually used] and it requires config
+				and for expo it looks hard to do it and i dont know .
+				it is hard for expo to use env files with approachiated way of our own ,
+				but i have to discuss it from the beginning for full understanding
+				it looks like to trigger the work environment in expo u have to use NODE_ENV with one of the
+				three values [development, test, production] those values let expo used different approach and mechanics
+				and .env files
+
+				and this is work fine but the issue is related with react-native-dotenv
+				which it throws an error in production mode (i think this is because expo uses production
+				libs in production mode)
+				and the error says react-refresh should be excluded from production bundle
+
+
+				with react-native-dotenv u can use any var name and it will be rendered
+				with process.env.SOMETHING or u can import it 
+				but anyway we need something like this , becuase the vars without react-native-dotenv or EXPO_PUBLIC_
+				wont be rendered
+
+				and there is another solution is to use react-native-config , this one works fine 
+				but it works on the builds but when i uploaded the code into eas the result was different
+				(i think this is because it have not updated the build properties)
+				and i think expo have talk about this point before and
+				i think they said u need a mod (modifier) to apply those changes
+				and because we still didn't get it through
+				we dont know how!
+
+				the third way and this way i have seen it in obytes app which they used dotenv
+				(dotenv and dotenv-mono cant be use d directly in metro nor in codebase because
+				it requires fs and path libs which are not built in in react-native nor expo)
+				they have used dotenv outside and instead of using process.env.SOMETHING 
+				when u want an env var they made it like a module (import and export) 
+				with a scheme and i can say this way it looks like it will work as expected 
+				but of course u won't use process.env but i think with this way u are full handling 
+				the eng vars and independent with NODE_ENV(which considered not best practice to use it 
+				to determine the app env)
+				
+				the fourth way is a passage and package i found on npm packages and stackoverflow which it says
+				u can use app.json [app.config.ts] to config the app env and u usually has to use additionl three
+				files , they can be .env.* or they can be [staging.config.js, production.config.js, dev.config.js]
+				but if u used those files u have to use the package `expo-env`
+				BUT U HAVE to consider to add the file into gitignore which i dont like it
+				
+				for me i see the fourth approach is not best solution becuase adding app.json into gitignore 
+				is not suitable also to determine by such a file like app.json not good
+				also u are considering no additionl secure layer to app.json
+				
+				i prefer the third approach becuase it is based on scheme
+				
+				
+				u can secure the vars , and so
+
+
+				actually it looks the env vars in expo a issue because 
+				i have seen many people try their way to use env vars in expo 
+				and everyone came with his way
+				
+			sixthly: i think we need in our project a [help center, about, ...etc] or somethings 
+			like that and there is many ways u can make it though, 
+			but the problem is not how we can make it or what we are going to use 
+			but the problem is the budget or the cost , i have seen this three kinds of how organsiations 
+			do so :
+				Slug-page : the domain of their website contains a slug for [help center, about, marketplace, ...etc] as https://example.com/help
+				Custom-domain: the domain prefixed by a keyword  [help center, about, marketplace, ...etc] as https://custom<about>.example.com
+				Different-domain: they use different domains as https://examhelp.com
+			so the cheapest way is to use slug-page which is less cost becuase it uses same domain
+			but it may be overkill in future or not adabtable becuase we using nextjs and those sections are
+			statically which they preferred to use [SSG, ISR]
+			
+			
+			SSG: is static site generation where it generates a page for every site at build time [not server nor clint]
+			but it has disadvantage that if there is a lot of pages as 1000 which we do much time at build which can
+			reach hours or days so ISR solve it but with some considerations but anyway it depends on the pages or site
+			we will generate to choose between those options , ofc u can also use SSR or CSR but not best suite
+			
+			ISR: is for increment site regenration
+			
+		seventhly: we have get some knowledge about things , like node process which is the module to handle the current processing
+			most popular use of our case is process.env and process.arv [returns an array of args and things]
+			YOU can check recap28 and Learn more at :https://nodejs.org/dist/latest-v14.x/docs/api/process.html
+			C++ unlike languages like JS or Python it doesnt have a standard file for packages [package.json in JS]
+			they have different approaches but they most use Cmake with CmakeList.txt or something like that
+			it looks like it is recommended if u are going to upload ur package into npm to use the syntax of es5
+			[by build the code or from src]
+			es5 [which has a syntax of commonjs]
+			
+			
+			anyway by talking about packages i have noticed something in largescale projects they do is to break down the project
+			and there is ways to do this:
+				1- e.g. vscode: it uses a lot of scoped packages that have been uploaded into npm so it imports every package with `@vscode`
+					as standalone package
+				2- e.g. react: it uses the packages inside the repo itself and doesnt make a lot of projects[repos] like vscode
+				but every directory or almost the needed ones have its own npm directory which it provides the package it needs
+				3 -e.g. nextjs: it make a dedicated diretory [workspace] called packages and collect all the packages inside it
+				
+				what my conclusion is : i belive if the team decided to take first approach this is may lead to
+				the packages are standalone , it means that every package doesnt depend on the other , it means making
+				a change wont effect src-code , wont be critical
+				
+				but the second approach may indicates the associated npm directory with cwd are in relation so it effects the code behaviour
+				for this module which can help faster in fixing bugs [src, npm] and easy maintain
+				
+				but about the third approach it looks its best suite if the code [packages] are relatively depending not
+				only as modulars but as src/ whole code , it may be the highest one with critical dangerous 
+				but it provides clean struct , easy config 
+				
+				
+				maybe there are more methods than those but those came from our observations
+				
+				also another thing is the differences between [canary, expermintal, prerelease versions, LTS]:
+					canary: it came from an idiom means `early danger` it indicates the app is not stable or a rise 
+					of encountering errors , it is rolled to small groups usually, its goal to catch early errors
+					and it usually follows the semver associated with sha (Secure Hash Algorithm provided by git) like 
+						18.3.0-canary-a1c2d3e4
+						
+					expermintal : it looks very similar into canary but it doesnt follows semver but only a date and a sha
+						, it suggests the stages that are purely expermintal
+						e.g.   0.0.0-experimental-241c4467e-20200129
+						
+					prerelease: it has many versions and it usually up to project manager, some of them are standards like
+						[alpha, beta, rc <release candidate>] and somes no like [preview release, techincal preview release]
+						
+						alpha: it means the very early stages in development and incomplete features, released to small group
+							e.g. 1.0.0-alpha.1
+							
+						beta: it means the early stages , not many incomplete features and bugs as alpha release
+							, released to bigger group than alpha , e.g. 1.0.0-beta.1
+						
+						RC: it means this release almost the stable release, where complete features and stable unless sugnificant bug
+							e.g. 1.0.0-rc.3
+
+						LTS[long term supported]: it indicates the release it supported and served on long term 
+							e.g.
+							
+						Preview Release:
+							SemVer Example: 2.0.0-preview.1
+							Description: The first preview release for software 
+							version 2.0.0. 
+							It indicates that the software is not yet finalized, 
+							and changes may still occur based on user feedback.
+						Technical Preview:
+							SemVer Example: 3.0.0-technical-preview.1
+							Description: The first technical preview for software version 3.0.0. 
+							It is likely targeted at developers and IT professionals for early 
+							exploration and feedback.
+				
+			seventhly: we noticed that github actions and CircleCI maybe used with github actions , becuase i saw this in many
+				repos but the common thing is they use CircleCI for docker actions and config while other actions 
+				they use github actions so i think this is related with advanced features in CircleCI related with docker
+				
+				we also noticed there is like to cases in docker [with-compose, without-compose]:
+					by default without-compose, a compose is a file in docker for mutli images and multi images
+					usually used in more advanced apps, like a docker image for [deve, staging, prod] and so on
+					and it can also reads the .env.* files related with 
+					while with-compose is simpler one with only one image so u dont need compose file
+					
+				we also have seen file called `MakeFile` which it is a file for automations or tasks or somthing like 
+				that , u can say its similar to scripts or CI/CD but as i have seen its usually used for tasks for docker
+				but this doesnt mean its related to docker or any dockerized app
+				
+				we also have known file called manifest.json which its used in web , it provides info or config for 
+				ur website or app, u can say mainfest file is similar to metaTags, and it also provides info for PWA
+				
+				PWA: stands for progressive web app , u can say its the shortcut in the home pages in browsers
+				
+				manifest: by the way the file has manifest name it usually related that this file is has info or config about
+					the app, it doesnt matter if it is android app, or web the concept still still
+					
+				we also knew about `The twitter-image and opengraph-image` which are images and config related with
+				the preview link , for more demonstration imagine someone have a link of ur website in facebook, or twitter or whatever
+				with those images , it will rendered as preview for this link , they can be put in public directory
+				or with related layout[pages]
+				
+				also they have .txt files which they are alternatives if process failed
+				
+				there is more like that but `The twitter-image and opengraph-image` are most common, 
+				there is also `Apple Touch Icon`, `Microsoft Tile Image msapplication-TileImage`, `Schema.org Markup`
+					Schema.org Markup is something like [not image]:
+						`
+						<script type="application/ld+json">
+							{
+							"@context": "https://schema.org",
+							"@type": "Article",
+							"image": "article-image.jpg"
+						  }
+						</script>
+						`
+				i also have seen that data format files like [xml, yaml, json, toml, ...etc.]
+				xml: it is intended to use if more complicated data
+				json: almost support by every aspect
+				yaml: usually used in script languages becuase its easness and
+					seamless and human readability , easy to maintain
+				toml: some uses it but not widely popular or suppored as the other , but has nice syntax
+					preferred for data format related with config
+					
+				we also have knew operators which they are relatively new which they are [??, ?., !., !]
+				
+				??: it uses the right part of the statment [expression] if the left part is null or undefined 
+				?.: same but its with chaining functions [methods]
+				!: it tells the value associated with it is not NULL nor UNDEFINED and its written in the right
+					example : const nonNullableValue: string = possiblyNullableValue!;
+				!.: same but its with chaining functions [methods]
+				
+			eightly: we have learnt things in JS like how to make chainable functions, u have to ways:
+				to use a class or to define a function and put the chained functions inside this function so 
+				all of them are nested
+				
+			also we have knew the use of `super()` constructor in JS which its used if this class extends from another 
+			class [has a parent] and super constructor used to send or init the constructor of the parent
+			
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V7
+	firstly:
+		anyway it looks playwright so powerful where it has many utils and functionalities 
+		, where it can emulate timezone, geolocation and more ,
+		it looks also has well supported for iphones (emulator test runner) but when it 
+		comes for android, it is a bit limited , u have to set android on stay awake , 
+		cant test everything on android supports on chrome and webkit, hardcore setup unlike iPhone
+
+		also playwright doesnt support raw USB for native tests , it has to be 
+		either adb or avm (emulator)
+
+		we have tried storybook addon for playwright but it looks it doesnt work 
+		, maybe because it isnt maintained anymore or because playwright considered 
+		newer tech
+
+		we also got an error related with jest addon of stroybook which it looks related with vite 
+		[because we are using vite builder], and as i have seen in vite (vitest) docs 
+		they say: vite has different pipline than the one used with jest 
+		, which make them incompatible or hard to config and maintain 
+		and because of that they made vitest which it compatible with vite and does
+		as well as jest does
+
+		anyway i also wanted to use storyshot which it is an addon for storybook,
+		it takes snapshots based on testes and it looks like it requires puppeteer maybe 
+		because puppeteer is considered old and has been compatible with storybook
+		(but we will also use playwright )
+		but we still don't know 
+
+	secondly:
+		some knowledge in package.json:
+			`funding` object field its a way to provide a url for fundation or
+			supporting u like petron
+
+			`files` field is covering the files of ur repo when it is used as dependacy,
+			also `.npmignore` do so but cant override the files field at the root but can 
+			override the sub directories
+
+			`main` field and broswer field , if it is intended to be used on node then main field 
+			is the choice while it is intended to be used on broswer then browser field is the choice 
+
+
+			`bin` field it super useful field where it acess the PATH and add the field 
+			to it , like when u installing something globally or cli u would actually see bin field ,
+			NOTE that , it accepts a file and it usually ends with .cmd or .cli
+
+			`directory.bin` it is like `bin` but loads all the directory 
+
+			`man` Field it is a field accepts a file like bin 
+			but this file is like unix thinkg and unix-based thing,
+			it doesn't work with windows and it works in linux command like ``man ls``
+
+
+			`directory.min` its as directory.bin where it loads the whole man
+
+			`repository` Field has shothand for some url domains 
+
+
+			`dependacies` Field, this field accepts variety  of dependacies like from url, local machine , path.
+
+			`cpu` Field [Array], if ur project runs only on certain cpu
+
+			`os` Field [Array] , like cpu but for os
+
+
+			`engines` Field , to specify the running node, or package manager
+
+			engines isnt strict by Default but it can be 
+
+	thirdly:
+		we have tried the storyshot addon (pepetteer and jest) but we failed we vary of errors like
+		`cant find location` , `missing lib sdl` , rollup error (again related with vite)
+		and so , but we find out this addon is deprecated in favor of test-runner addon 
+		which we tried next and it worked , its zero configuration but has a small condition 
+		or consideration, is u have to make an instance of sb by build it or start storybook, 
+		it worked when started but we couldn't yet solve the build problem, 
+		we advanced a little in it but still unsolved
+
+		i think to solve such a problem may we have to understand a bit little in vite.config
+		or rollup 
+
+		we also found that there are other extensions other than .md for markup languages 
+		like .rst (which primary used with python)
+		and it considered more features than .md
+
+
+		we also knew new tech called sentry which it is like a crash or analysis system, 
+		it is embedded in ur code and sends u analytics and so on , 
+		but actually i dont know if we need it or no because we have seen firebase has something 
+		like that [analytics, crashlytics] but we dont know if they are the same or not but what
+		i know is sentry free up to 5000 event which it is good as startup, while firebase as 
+		i remember it has bailing system for this
+
+		i found a comparison of different error logging tools as sentry but i didnt 
+		really get useful info , im still dont know which one is better in our case 
+
+
+		but for now i think the popular tools are sentry , rollbar, bugsnag
+
+		but it looks like bugsnag focuses more on native platforms and may it doesnt have 
+		powerful or well support for web apps as next js
+
+		each of them provides features over the other specially of how it handles and 
+		shows the data but the only thing i saw different is 
+		sentry provides 5000 event free , more focuse on APM
+		rollbar provides 5000 events free	, more focus on Error mentoring
+		bugsnag provides 7000 events free	, more focus on native platforms
+
+		and there is other tools but i dont know which is better i think we have to do a 
+		deep comparison to figure out which one
+
+		but i think the choice will go into sentry or rollbar,
+		sentry knowing with the first outcomes of error mentoring where it like
+		started at 2010
+		
+		syntery because: it is trusted by react native and expo and it is supported by both
+		of them and expo recommends it 
+
+		rollbar because: it looks it is more advanced than sentry but my this is just an illusion,
+		i found sdk for it but it maybe not fully supported as sentry
+
+
+		i have found out , maybe both sentry and rollbar are equally but 
+		sentry has more focus on APM ( application performance montoring) which can be considered
+		as a con but not really, its up to the team to choose do they want more focusing on 
+		error mentoring or APM 
+
+		also we have found out thing about MakeFile which it looks a sub language
+		with its own syntax [like-batch] and so and u have to install it throw make install
+
+		and MakeFile usually used with c and c++ , with Makefile u can compile the changed 
+		files and automated them
+
+		i have found those points useful when choosing error mentor tool:
+
+			Does the tool have a good dashboard to analyze information?
+
+			Can you trace the problem with the help of a tool back to an individual commit (and commit author)?
+
+			How much integration does it provide out of the box?
+
+			it should have features like: 
+				error tracking, logging and debugging, charts and boards, 
+				crash reporting, code optimization , 
+				real time alert , notifications , network mentoring 
+				
+	fourthly: 
+		maybe react-native and flutter dont share much concepts between them (thought they are cross-platforms)
+		
+		but we gained a little knowledge:
+			in flutter the equivalent of package.json is pubspec.yaml , where flutter uses
+			`pup` as package manager
+			
+			in swift the package manager is SPM (swift package manager) and it uses file `Package.swift`
+			and it can use another package manager related with objective C which it is CocoaPods
+			
+			in objective C package manger is Cocapods and u can use SPM, it uses file Podfile
+			
+			im still dont know if we are going to find common concepts in native platforms but we 
+			only know we will still advance in native platforms , we will discover
+				react-native
+				flutter, cordava, ionic, android , ios, unity
+				
+			we also have figured out that there is a little chance to use unity within react-native
+			[it is a bit harder for expo] but in short:
+				react-native doesnt have a direct way to communicate with unity but the native code has
+				
+				we understand a bit in async code and callback functions and promises:
+					async functions return a promise
+					promise has three states [pending, fullfil, reject]
+						pending or prepending is the stage where like the promise init,
+						a promise is represnted into an object and have two flows [resolve, reject]
+						
+						callback is the function send as param of another function
+						u can with callbacks do-like async code which will produce callbacks hell
+						, but what makes them callbacks do-like async is the async opperations happen within
+						
+						a promise arguments (resolve, reject) are two functions
+						
+						a promise can have multi `then` but it should at least have one `catch` 
+						(it wont give syntax error, if u didnt provide it) but it will cuase the app to fail at 
+						any error and it will be harder for maintaing
+						
+						good to know that:
+							callback hell functions are executed from inside [bottom] to outside [top]
+							while promises functions `then/catch` are executed from top to bottom
+							
+						good to know that:
+							if async function do things inside it and it has no `await` the code will work in parallism
+							, it isnt something good everytime cause it can crash or throw unexpected error this is becuase
+							the function doesnt wait for the code inside it to be executed
+							, while using `await` makes it predicatable and work in sequence
+
+						good to know that:
+							u can instead of using `await` u can use `return new Promise` and it will give
+							same result, but it isnt best practice becuase it is harder to maintain and may make overhead 
+							of the code by the heavy promise
+								
+								async function exampleWithAwait() {
+								  const result1 = await asyncOperation1();
+								  const result2 = await asyncOperation2(result1);
+								  return result2;
+								}
+
+								exampleWithAwait().then(finalResult => console.log(finalResult));
+
+									/*/*/*/*/*/*/								
+								
+								function exampleWithPromise() {
+								  return new Promise(resolve => {
+									asyncOperation1()
+									  .then(result1 => asyncOperation2(result1))
+									  .then(finalResult => resolve(finalResult));
+								  });
+								}
+
+								exampleWithPromise().then(finalResult => console.log(finalResult));
+
+
+						the normal iterators in JavaScript as `forEach` are not compatiable with async
+						code , but this is doesnt mean it will throw an error but it may give an expected
+						behaviour even if u did :
+							async function foo() {
+							  someArray.forEach(function (value) {
+								doSomethingAsync(value);
+							  });
+							}
+							
+							async function foo() {
+							  someArray.forEach(async function (value) {
+								await doSomethingAsync(value);
+							  });
+							}
+							
+						both of them are not considered best choice even when using await , where it should 
+						waits for each iterator to end but it actually still has some pitfalls , so in javascript
+						
+						the only iterator compatiable with async code is `for..of`.
+						
+						while one iterator like `for..of` wont be enough so u can create ur own iterator or use 
+						third party library like `bluebird` which it provides iterator `each` and other functionalities
+							
+						
+						good to know that:
+							
+							async function parallelAsyncOperations() {
+									  await doSomethingAsync(1);
+									  await doSomethingAsync(2);
+									  await doSomethingAsync(3);
+									}
+
+									parallelAsyncOperations();
+
+							equivalent into:
+							
+								async function parallelAsyncOperations() {
+								  await Promise.all([
+									doSomethingAsync(1),
+									doSomethingAsync(2),
+									doSomethingAsync(3)
+								  ]);
+								}
+
+								parallelAsyncOperations();
+
+						
+						good to know that:
+							there are three common ways to execute the async functions:
+								
+								1- Let the rest of our code execute and not wait for it to finish, 
+								which we might even want in many cases.
+								2- Call it inside another Async Function wrapped with a try/catch block.
+								3- or… Use it as a Promise.:
+								
+									// Option 1:
+									doManyThings();
+									// Option 2 (invoked):
+									(async function() {
+									  try {
+										await doManyThings();
+									  } catch (err) {
+										console.error(err);
+									  }
+									})();
+									// Option 3:
+									doManyThings().then((result) => {
+									  // Do the things that need to wait for our function
+									}).catch((err) => {
+									  throw err;
+									});
+								
+					
+					in the end to deep understanding of async functions , there is things
+					u should have solid understanding in it first like : Promises, callbacks,
+					resolving, rejecting, classes, protoypes, ...etc
+			
+			
+	fifthly:
+		we getting understand a little bit understanding of apis and databases as when our app scales
+		we will be in need to use them and from the first my eye was on python specially becuase of the ai passives
+		but for the short time we have we decided to use firebase but we still dont know if we need an api from 
+		python or no becuase firebase has cloud functions which we can use it , but here are some considerations
+		about firebase cloud functions:
+			it utilizes the light-weight functions and the heavy functions are usually not suitable for it
+			. However, firebase is scalable but it is still not best practice
+			it likely prefers the more focused functions
+			it provides development env but may not be the best option, specially when using other based languages
+			than nodeJs
+			may not be best choice for full api functions and its not best practice
+			may it affects the performance specially if it is long processing functions
+			not best suitable option for large computing funtions like ML functions
+			may have compatibility issues with some third party libraries ,specially when using other based languages
+			than nodeJs
+		but what im sure at that as the app scales we have to make an api with python and we got three options 
+		[django, flask, fastapi]
+		and there are things i want u to be aware of them:
+			fastapi and flask are usually associated with small projects and its hard for them to scale
+			however they provides fast and easy to use solution and maybe suitable as starter.
+			but when i asked chatgpt it answered with good answer saying:
+			`You have to look for future-based api, using Pnp like flask and specially fastapi looks a good choice,
+			at beginning but this choice have considerations in future`.
+			as u see as ur demand increases u would likely increase the functionalities of flask or fastapi
+			but then it will be a lock where u want to change into a large scale project api frameworks like django
+			however django is better to be used in large-scale projects but there is something about it with long history
+			it looks it cant handle async functions effectivly and it looks like it has condition to benfits from async functions
+			like if async function exists shoudlnt be any conflict with a middleware util or function
+			some of middlewares are able to work in sync or async u have to figure which one by ur own throw logging
+			and it have another consideration, it it opinoined where it did the decision for u and have to 
+			follow the approaches and the paths they chose for u [it means less flexability]
+			but still django is the best option in terms of python
+			SO I THINK THE CHOSEN API FRAMEWORK IS Django for python
+			
+		but our knowledge wont just stop at python we are going to learn a bit more at apis, and databases
+		there are a lot of options between apis and databases but we still dont know what we will need or
+		what we will use but we figure out in the future as the app scaling
+		but here things i have noticed and researches i have made of the potential of each api or database
+		but before starting i have to demonstrate something:
+			in apis:
+				there is a lot of arch patterns followed by those frameworks like:
+					MTV Model: stands of model-template-view it is a pattern to structure the project
+					Event-Driven Model: where the flow of the program is determined by events,
+						such as user actions (clicks, keystrokes), 
+					MVC (Model-View-Controller):  divides an application 
+						into three interconnected components and the controller for handle user I/OF
+					RESTful: It uses a stateless communication model, and resources are identified by URLs. 
+					Microservices: an application is built as a collection of small, independent services.
+					...etc
+					Learn more at D:\Documentations\Recap\recap38*
+				Learn more about apis at D:\Documentations\Recap\recap40*
+			in databases:
+				there is normal database , real-time database,
+				polyglot persistence or a multi-database architecture like:
+					MongoDB provides real-time database throw change streams
+					some third party services as firebase provides the three types
+					other DBMS may provide real-time database throw websockt, it may be zero 
+					config or requires full configurations
+					, also some of them maybe paid
+				
+				
+				polyglot database was a surprised when i knew it but it looks like u can use multi databases
+				together and it may not matter if they are from same kind [rational , non rational]
+				but when i searched about it at internet it looks it is possible and it looks u can use it in firebase
+				but i still dont know how and how to make a communication between them and how the communicate
+				but as time passes we will know anyway Learn more at D:\Documentations\Recap\recap39*
+					
+		those things i had to demonstrated them before going to talk becuase u should understand them first
+		what im about to talk about is:
+			the apis and databases.
+			
+			i think in the future we will need them becuase of the demand of the app , but the question was:
+				which one will be suitable for our requirements.
+				which one is integratable with NextJs and React Native
+				which one gonna provide best performance for our universal app
+				which one is compatiable with the node env to work seamlessly
+				which one has the functionalities we want
+				...etc.
+			there are a lot of question and one solution in the end , but the answer have to take 
+			in mind it is overkill answer where it may affect badly if a wrong choice so u have to look
+			at many considerations before to choose so we had made those researches [recap*]
+			but here are somethings i think its true :
+				Django: MTV anyway it 90% will be chosen as first api for AI functions and i have described
+					some considerations about it above so there is no more to talk about
+				RoR [Rails on Ruby]: MTC considered more Battery Included [comprehensive set of features]
+					in terms of startup project, it more flexability than Django
+					also RoR is mainly used for MVPs, eCommerce, web projects, and meta programming.
+					it is adapted and loved by many
+					
+				Node: event-driven, also its less secure and performance than django but its integrated with 
+					many of npm packages in node ecosystem which it is big advantages
+					
+				.net: it looks very good at many aspects but it locks u at .NET and Goggle
+				gin: also looks good speciall its from golang but it needs bigger community and support
+				
+		
+		
+		
+		for now we said we are going to use Django but i think the next api will be one of ecosystem of nodeJs
+		
+		also i have known something that NextJs can create small api by utilizing Prisma
+		
+		in conclusion we need to learn about the mechanics in APIS like RESTful, GraphQL and more
+		we need to determine which framework to use, which protocol , and how it looks 
+		
+		also we have to think about the ML model as this is the purpose of the API to use AI
+		it is still a long way a head !!
+		
+		
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V8
+	
+	and here we go again with another version:
+		all of this about Solito:
+			<Link/> comp: is the drop of NextJs Link comp and it follows it with some other props
+				Props: viewProps => to give the props of underlaying View,
+					href = > <required> the href for link
+					passHref
+					...nextjs Link comp props
+				it doesnt have any other props
+				but it is said about it some considerations:
+					// 🚨 this is bad, it uses Pressable
+					<Link href="/">
+					  <Pressable />
+					</Link>
+					// ✅ this is good, it uses a View
+					<Link href="/">
+					  <View />
+					</Link>
+					// ✅ this is okay, since it's disabled
+					<Link href="/">
+					  <Pressable disabled />
+					</Link>
+					
+				and if u want to render a text inside it u should use TextLink comp instead
+				
+			<TextLink/> comp props:
+				href = > <required> the href for link
+				textProps => to give the props of underlaying Text
+				passHref
+				...nextjs Link comp props
+				
+			<MotiLink/> comp props:
+				href = > <required> the href for link
+				...nextjs Link comp props
+				...MotiPressable props
+				as
+				shallow
+				
+			useRouter hook :
+				it is the way to navigate in cross-platforms
+				its methods: const { push, replace, back, parseNextPath } = useRouter()
+				
+				push follow the same way as push in NextJs
+				there are two ways to use it:
+					 
+						const onOpenArtist = () => {
+						  push('/artists/drake')
+						 
+						  // or, you can do:
+						  push({
+							pathname: '/artists/[slug]',
+							query: {
+							  slug: 'drake', // pass any query
+							  //initialOfferAmount: 500000,
+							},
+						  })
+						}
+					
+				replace Just like push(), this follows the exact same API as Next.js 
+				It takes the exact same arguments as push.
+				but it has expermintal features for native platforms like :
+					export function Home() {
+					  const { replace } = useRouter()
+					  const openArtists = () => {
+						replace('/artists', undefined, {
+						  experimental: {
+							nativeBehavior: 'stack-replace',
+							isNestedNavigator: true,
+						  },
+						})
+					  }
+					  // ...
+					}
+				also Link components can use those props if ||replace prop is true||:
+					<Link
+					  href="/artists"
+					  replace
+					  experimental={{
+						nativeBehavior: 'stack-replace',
+						isNestedNavigator: true,
+					  }}
+					/>
+				
+				parseNextPath: it is a way to return obj url into stringfied one
+				it's useful if you want to provide stable keys to lists of URLs:
+					const path = parseNextPath({
+						  pathname: '/artists',
+						})
+					
+				it also can be used like that :
+					const href = parseNextPath({
+					  pathname: '/artists/[slug]',
+					  query: {
+						slug: 'drake',
+					  },
+					})
+				
+				Screen Parameters:
+					import { createParam } from 'solito'
+					const { useParam, useParams } = createParam()
+					const { params, setParams } = useParams()
+					
+				we wont talk about it becuase we still dont understand about params and so
+				
+				useLink:
+					import { useLink } from 'solito/link'
+					# or, for App Directory:
+					import { useLink } from 'solito/navigation'
+					
+					const linkProps = useLink({
+										  href,
+										  as,
+										  shallow,
+										  replace,
+										})
+										
+										
+										
+										
+										
+										
+					
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V8
+
+	anyway i dont remember much but we have went through different direction this time , this 
+	time we went to understand more about backend.
+	
+	and with all related things we have did before a comparison about different frameworks in different
+	languages to make an api but we are going to have two winners [django, node js backend framework]	
+	and usually this node js framework will be nestjs , because we have figured out that nestjs
+	is likey built over express by default and it can use fastify under the hood,
+	also nest js primary uses typescript and angular like-structure in its projects which 
+	it is good for us
+
+	also nestjs it looks better in terms of scalability and i dont think i will find anything 
+	better than it 
+
+	but here comes two questions:
+		1- why they are two winners ?
+		2 - why nodejs frameworks are the second winner
+		[we know before why Django is the first winner]
+
+
+		firstly: there are two winners because we are going to make two apis or more 
+			and one of them for AI so Django won
+			and second api will handle the database and all those related things
+
+		secondly: the nodejs frameworks won because we already know nextjs , 
+			and getting used for something like golang or rust or ruby or ...etc. 
+			wont rapid our development
+			also the react native and next are based on nodejs run time environment which will lead to less config or zero config also node js has wide ecosystem for many of libraries and tools
+
+
+			so based on this we start searching and learning 
+			not only for API but also for database and backend
+
+			at first we decided to use firebase as it aligns with our requirements but then 
+			we found out about vendor lock which it is a big consideration when u are thinking about firebase this is because once u have used firebase 
+			it would be challenging to change it or migrate to another tool or framework 
+			this is because firebase uses its own created database and its the only provider for it
+
+			so depending on this we have got three options
+			first option: is to take the risk and use firebase
+			second option: is to use alternative to firebase which it isn't vendor lock like 
+				supabase
+			third option: is to build ur own from scratch 
+
+			every option of those has its pros and cons
+
+			first option[high productivity, less control]: 
+				pros: a one liner framework, scalable, advanced, provide many things out of the 
+					box , the most adapted framework for Baas , has many advanced databases operations
+					
+				cons: the most con is vendor lock, high cost
+
+			second option[moderate productivity, moderate control]:
+				pros: almost provide everything as firebase , less cost of our case  , used postgreSql 
+				, no vendor lock
+				
+				cons: not advanced as firebase, not huge community as firebase, limited, high cost
+			thrid option[less productivity, high control]:
+				pros: full control , lighter depndacies, self managing, full customization, 
+				free to low cost 
+				
+				cons: more time consime , maybe wont be effiecnt or professional as a service provider
+		
+	
+		actually im thinking the second and third option are best options becuase u have to think at future
+			and if u used firebase , then using another tool would be like impossible becuase they have their own
+			database which mean if u want to use new database or [DaaS, SaaS] u have to copy all the data somehow
+			or u will have to let it go , so if u are going to choose the first option u have first to make 
+			a migrate plan in case firebase is not sufficient anymore
+			
+		but when it comes to second options u will notice that those frameworks arent popular as firebase
+		or doesnt provide advancer features over firebase but at least they use open source database like
+		postgreSql or MariaSQL [fork of MySQL]
+		
+		and the third options is going to take a bit longer and steeper learning curver becuase we have 0
+		knowledge about backend and how to handle many sceniors and so so it will take longer time becuase
+		[Learning + Implementing + Experiance]. but what can i say . there is no escape of the future
+		and becuase that u will need to utilize the third option sooner or later so the third option will
+		be always a valid option 
+		
+		
+		so based on this we started a new journey to discover the backend and make or api for ourseleves
+		this journey will covers many things .
+		
+		so our startup will be by choosing a valid database for our case:
+			the needed database should have:
+				can do real-time communication somehow
+				aligns with our schema
+				can communicate with other database or can be used to make multi-database
+				can be used globally [react-native, Nextjs]
+				providing serverless and non-serverless <optional>
+				have a varity of tools and supported by many
+				deployable by many website and hosters
+				can be used in node ecosystem and python ecosystem
+				scalable
+				client side and server side database <optional>
+				open source <optional>
+			
+			so based on this the next step is to choose which tools u would use 
+			and there are four choices here :
+				Raw SQL: Full control, low productivity with tools like `https://node-postgres.com/`
+					and `https://github.com/mysqljs/mysql#readme`
+				SQL query builders: High control, medium productivity with tools like `https://knexjs.org/`
+					<it looks it is the only builder or the most popular one>
+				ORMs[Object relational mappers]: Less control, better productivity tools like `TypeORM` and `sequalize` and ...etc.
+				Prisma: it is said it fixed the problems with those tools and increases productiviy ,
+				<prisma looks most popular one and TypeORM and maybe Drizzle>
+			
+			but there is a little problem among those tools , that we havent ever used any one of them before 
+			so we dont know which one fits in our case but here are some considerations and features should tool has:
+				should be compatiable with node ecosystem and nextjs and python ecosystem
+				should be productive and sufficient for us
+				should be extensible or integratable
+				can scale
+				uses type safe <optional>
+				can be used with varity of databases
+				should be integratable with backend frameworks as NestJs
+				less opinoinated
+				easliy migrate or config <recommended>
+			
+			so i think the next step after that to determine how we want our api to look like 
+				do we want it as RESTful api or GraphQL or SOAP or ...etc.
+				
+			after that is to choose the backend frameworks
+			and we have already did
+			
+			and maybe the next step after that is to use tools to help u with api , like api servers
+			caching system , secuirty system , mailing system , and more 
+			
+			and the next step after that is to determine where u will host ur api 
+			
+			i think the step after this is to determining how u will make a connection between backend and frontend
+			
+			finally i think this is sufficient to make our backend
+			
+			but we wont talk about frontend , we will take about it in another session or version
+			specially when completing our `tech stack`
+			
+		good to know that: 
+			backend is riched with knowledge in many cases and it doesnt only handle the messaging data
+			but can handle the whole system 
+			
+			some common aspects in backend like api, there are many architecture for api to know and try
+			but the most common ones are [RESTful, GraphQL] APIS
+			
+			for now i dont really understand the differences but it looks like RESTful api is 
+			considered to be like a common api or most used cases
+			while GraphQL it looks like it is lighter and more performant , i think this is becuase 
+			it returns the needed piece of data not whole object which faciliates the transition
+			
+			also one of commons aspects in database are : client-side DB and server-side DB
+			so we are going to discuse some pros and cons about those two types:
+				client-side:
+					pros: located at client side which faciliates fetching data
+						reducing network dependacy
+						more performant
+						
+					cons: less control
+						secuirty concerns
+						harder to sync data
+				server-side:
+					pros: centrailzed data ,more control
+						collabration
+						secuirty
+						
+				and those are the things i have found them `should be said`
+			
+			and it looks also when u are developing backend u have to understand ur case to know if u want 
+			to use Real time communication , and this is concern using tools for real time communication
+			like :
+				WebRTC [web real time communication]
+				Socket IO
+				...etc.
+				Learn more at recap43*
+			
+			and by chance i have knew things looks like it is used in big companies [usually more than 50]
+			they are SAML and CIAM:
+				but we wont talk about them here u can Learn more at ~recap44*~
+				
+	beside all of that we have get knowledge in other terms like 
+	react native:
+		we have known a library called victory native which can use to create complex charts and graphs
+		and it has a version for react itself called `victory`
+		
+		also we have tried many things with react native [expo] like realm [which it is enhanced mongodb version]
+		and it looks realm has two sdks; one for mobiles and other for web and it looks like it can 
+		handle the database from mongodb and PouchDB and CrouchDB 
+		
+		and also realm it is morethan a database as it provides additionl for managing database
+		through mongodb atlas
+		
+		and it has free and paid plans , paid plan starts from 10 GB till 1 tera [as i remember]
+		
+		so becuase of all those features maybe we have a chance to use it in our globall app 
+		but unfortunatley. it doesnt look it will work [we have not tested yet] becuase
+			it crashes the app at every build and it require a native build becuase it is connected 
+			with native dependacies and doesnt have a communication through `expo go`
+			so u have to make a build
+			
+			we have tried  many things to fix this build crash but we failed at each time ,
+			we tried to fix it locally through our build with gradle 7.6.1 and 8.0.1 and both of failed
+			
+			we got many errors like u should use jdk 17, and if we used jdk 17 it will throw another error
+			u should use kotlin 17 and we tried many times to use it 
+			and there is one more error which says react-native-community/cli is not found try to 
+			install react-native
+			
+			and we also tried some config with expo-build , eas, app.json and again we failed
+			
+			
+			and with a lot of days and builds we still failing ,
+			
+			so we turned away about using realm [having deep feeling that i have deep feeling that realm 
+			sdk wont work on nextjs]
+			
+			so here we decided to see if we there's another database with sdk for mobile 
+			but actually we havent found that there is only two sdk for database for expo and they are
+			realm and sqlite and watermelonDB and mmkv
+			
+			so again we established in trying sqlite with expo and it worked sucessfully
+			
+			but it is good to know that we still can use anyd database with expo:
+				the recipe is to make an api runs on node environment and becuase react-native or expo uses js
+				it can subscirpe to this api which it handles the database , this solution can work globally
+				with some handcraft but the only consideration is :
+					server side database and lower performance in comparison of dedicated mobile sdk
+					
+				although u can still use both way [server and client] side database
+				
+				but each client side has to be standalone and it can be globally accussed
+				
+				also by chance we have know that expo sqlite can read the exist database with `.db` files
+				with expo assets and expo file system
+				
+		
+			
+	we also have known that it is better when making a backend to use docker so it can works 
+	with external services
+	
+	we also have know that there are a tech can convert website into executable desktop application
+	and the most known tools for this are :
+		Tauri
+		Electron
+		NX.js
+	
+	
+	and we go into some comparison about them and we found out 
+	Tauri provides best performance and secuirty and robust and light-weight solution
+	while electron is extensible and has long range of success with bigger community and addons,
+		electron can render server side props and uses chromium abilties while Tauri cant
+		it render them only as SSG or SPA
+		
+	NX.js it has small community and it is used for small projects
+	
+	so becuase of that i think if ur application dependacies on chromium features and integration
+		with like C++ or it uses a lot of server side features, then it is better to use Electron
+		otherwise Tauri is better choice
+		
+	
+	also it looks like Next js supports MySQL, PostgreSQL, MongoDB [and mongoose] out of the box
+	maybe other databases needs more configurations
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V9 
+
+	first of all , as i remember we have knew something knew called software architecture 
+	design which it is ...
+	actually i don't fully understand what it is but it is the full overview of the project 
+	its like desgin pattern but u can say that desgin pattern is subset of software architecture
+	design, becuase it is the way that ur project interact in a full overview
+	and there are many type of it like :
+		DDD which stands for domain driven design
+		microservices
+		...etc.
+
+		those software architecture desgin system are essentially because they overall how 
+		the project will look and interact
+
+
+		also one of software architecture design which we will abbreviated by [SAD] is to
+		make a blueprint.
+		blueprint from beginning was used with engineers to make the design of buildings and so , 
+		it is a piece of paper shows or demonstrates with UML or without how it looks the nodes and 
+		how they interact [protocols] and what are I/O and what are the goals and features 
+		of the app and so on
+
+
+		also SAD usually associated with a documentation.
+		this documentation is used for developers and skateholder, the look and structure 
+		of this documentation can vary based on several things and it also may look like the public 
+		documentation
+
+		also one of the SAD we have heard about is multi tenancy which is a single service 
+		or group of them which can handle multi tenants
+
+		a tenant usually refers to a group of user or a one user
+
+
+	also it looks like there are many types of repos like:
+		component based repo
+		microservices repo 
+		...etc.
+		Learn more at recap46
+
+
+	also we have knew a little bit about distributed systems which it is like 
+	cloud systems where u collect a nodes or servers or computers .
+	and here is a brief made by my own
+
+	'distributed system purpose is to work for tasks efficiently and with a large amount 
+	of data usually, also they are not limited to specific field or burden but 
+	they can be used in various things , usually the organization uses distributed systems 
+	in huge data as u can call the distributed system 
+	`The big brother handler of hardcore task`'.
+	
+
+	also we have got to understand things for ourselves,
+		i was turning away about this every time and reject it but now i see it have sense
+
+		what I'm talking about is the documentation, firstly i though documentation 
+		should be used only for organisation or teams and so on and because 
+		im working solely i used to believe that a documentation for ourselves is a bad idea,
+		but i after demonstrating this with chatgpt i found it that it could be useful
+
+		making a documentation that covers a lot of things will help u as a reference
+		like it will cover the progress, issues, blueprint, components, plans, ...etc.
+
+		so because of that i decided before starting in our global project we should make 
+		this documentation first, and becuase of this we have know to learn how to 
+		make a documentation
+
+		and becuase of that we have to learn a tool or framework, 
+		firstly we started by gitbook, but for our first 
+		test it looks like gitbook doesn't accept js or css code embeded in markdown or html
+
+		so for now we see it as it cant algin with our requirements so we have to go to 
+		the other tool which it is Docusaurus which it is a tool to make a documentation through 
+		react and it created new feature called MDX which lets use markup lang inside markdown 
+		files
+
+		and we tested and it actually looks so good and they have advanced documentation 
+		and also it provides a comparison about other tools , check it out of want
+
+		but this is not sufficient to make a documentation there are more tools like 
+		UML tools and so to make our full aspects documentation 
+
+
+	also we have knew different between scoped packages and in house libraries or 
+	packages
+
+		in house libraries are usually small or minimal libraries separated from the main repo but still serving the main repo, the benefits of it , is like encapsulation, abstraction, securing and so 
+
+		Learn more at recap47
+
+		also we have tried to figure some of enterprise apps secrets like how they hide 
+		apis and how when u check out the package.json u dont find any package 
+		related with an api and u dont find any 
+		config file or whatever u find only nothing
+
+		this is was a pain in the ass , so we had to do researches and try to understand 
+		how they do it
+
+		actually when u check the internet u dont find any difrect info and even if u asked 
+		ai tools they dont either give u direct answer and instead they talk to 
+		u about .env files and config files which it isnot what 
+		we are looking about
+
+
+		but after deep searching and brainstorming we have got some conclusions :
+			trick A: is to make to repos of the project one of them is private and the other is public, the private one is used for development and it carries all the app configuration and related apis and so , the public package is providing the needed tools and packages if someone on someday wanted to contribute or forked the repo , so they provided everything thing he needs to work but not everything he needs to know
+				so by this u keept ur secrets and made an open source repo
+
+			trick B: is to make different files or configuration and package.json 
+				like package.private.json where u can show commit only the 
+				needed files 
+
+			trick C: is to create in house libraries and they carry the logic of api 
+				either by based it on the library itself or based 
+				it on component
+
+			trick D: is to create a repo where it carries all logic for all apis 
+				and then use it as a package or even better use it 
+				as api
+				[knowing that , it enhances the security but the api 
+				should be really really well optimises specially for performance 
+				becuase if it isn't so it will lead to high 
+				latency and poor performance]
+
+			those are the main tricks i have thought about, even so they are still more 
+			than that a lot but for me is the trick B or D provide best result 
+			and pros with less cons
+
+			actually to hide every detail about api is really 
+			challenging but it worths
+
+	also we have discovered that wordpress actually can make center help website 
+	and it also can make a documentation
+
+	also we understood some of pros of sqlite which are :
+		it is a single file database it provides simplicity and portability 
+		it is minified so this is made it able to be used in embedded systems
+		it actually allocates the needed space for example if u have 
+		declared 100 bytes space of chars and the only entered 
+		data is one byte , then sqlite will allocate one 
+		byte with some overhead(which in some cases can 
+		increase to like 2 bytes and more)
+		sqlite is zero configuration
+		manifest typing (i didnt get this part alright)
+		serverless
+
+
+	also we have known about MVP which it is a minimal app used to show 
+	the main features of the app
+
+	also we have known about prxoy which it is an intermediary or a server that acts 
+	on behalf
+	
+	but first to understand proxies we have to understand or get to know what is web server
+	
+		web server is the processor or a software which handles the connection from client and
+		deliver web content and it uses protocols as HTTP
+		
+		usually when u are using backend framework it has its built in webserver or it would be 
+		a thid party library as `http` in npm package
+		
+		but those built in web servers actually they are not that pro or strong , they are optimised 
+		for production but they should be used for development or testing and so
+		
+		so they are global webserver that used for production as Nginx or Apache Web server [Apache Http server]
+		
+		but each web server 
+		servers differently and may it location gets different like [frontend, backend]
+		
+		but this is may vary based on the proxies u want to use in ur backend 
+		
+		i will cover two of the most common proxies:
+			forward proxy
+			reverse proxy
+			
+			to breif what are those :
+			
+					forward proxy: makes connection between client and internet without knowing 
+						where the content will be served.
+						forward proxy acts as behalf of client which means 
+						client doesnt interact [communicate] with server
+					
+					reverse proxy: makes more direct connection between client content 
+						and preferable backend server
+						reverse proxy acts as behalf of server which means 
+						client communicate with server
+						
+					
+					
+			also we have noticed that both those proxies can work together 
+			and i think this is becuase reverse proxy works on 
+			frontend and forward proxy works on backend
+			
+		also we have knew something called application server which we can methophorically
+		call it the `executor` , it actually execute application code and handles http and 
+		in output it gives u the url of the local host for example
+		
+		and as we said about web server it is same as application server , that the associated
+		built in tool is not suitable for production but u have to use more comprehensive one
+		but we cant now tell u a global known tools as we did in web server becuase every lang
+		varies but we will take Django as examples and give u some tools:
+			GUnicorn [green unicorn]
+			UWSGI
+			Apache_wsgi
+			Nginx_uwsgi
+			
+		we also we have known about load balancer , which they are a softwares or hardwares
+		where they used to make a balancing load on different nodes [servers].
+		
+		some host services when u host ur web app on thier website use 
+		load balancer and somes no
+		
+		when u using load balance they usually combined or integrated with web servers but they 
+		can also be integrated somewhere but this is most common approach
+		
+		we also we have figure out there are many api differs from each one , an amount of apis
+		u didnt imagine someday there is something like that , like there is api for search engines
+		api for documentations, ...etc.
+		
+		so becuase of this we now understand the value of .env files and we have now understood
+		the importance of hiding apis and how it worths and how it could be risky
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V10
+	this time we are going in directions to know about a lot of things , 
+	like how are the real life projects built , how the organisation built , system , 
+	enterprise and so , we actually we want to build our own enterprise but to do 
+	so we have to understand a lot of things , there are a lot of concepts , secrets , 
+	infrastructures, ...etc. to learn or to know about , actually i dont know if 
+	knowing this is helpful but for now we dont have a choice and our best choice is to 
+	continue learning about every aspect in enterprise and logical planning to handle 
+	the future
+
+	so this time we have known things like system architecture, enterprise architecture 
+	and IT infrastructure
+
+	system architecture: is the design and the user interface of the enterprise system which 
+		it covers buildings, rooms , offices and so u can think of system architecture 
+		like front end with UI & UX but it is more than that and u can also think about it 
+		as outer layout
+
+
+	enterprise architecture: is the inner design, processing, interconnection,
+		communication, in brief it is the processes happen underlying 
+		(under layout) so u can also think of it as backend usually
+
+		i can say about 98 in enterprises that IT infrastructure is used
+
+	IT infrastructure: is the backbone services provider to help the IT teams and services 
+		to do thier jobs 
+
+
+	those concepts together and other concepts construct enterprise organisations
+
+
+	also we have known about something called QA engineer (quality assurance) it looks 
+	like it does essential role in the organisation, 
+	but i still dont understand his role perfectly but it had a roadmap 
+	on roadmap.sh also it is said to be of IT crew
+
+	what i know about him is , he is the ine essential to make the final tests on 
+	the system on the app or part of it or something but the 
+	whole system, whole app, whole service , he checks the quality assurance of the 
+	(fine) product 
+
+	also he could contribute in unit testing or any tests happens and 
+	it could be like a senior or manager to ask or consultant
+
+
+	also we have known about Blockchain developer which he is a developer for developing 
+	Blockchain based apps (DApps) 
+
+	the Blockchain or DApps I didn't really understand it but u can say they are special 
+	app used for special cases as currency, healthcare, 
+	secure systems, payment,
+	in brief it is used is apps that are essential to have security
+
+	i think this is because it provides decentralisation, transparency, 
+	security and so
+
+	but anyway i think it is a something we should care a lot about it as it doesnt 
+	align in our requirements, but i have known it by chance 
+
+
+	also we have known about programming languages , there are a tons of programming 
+	languages, some of them are only functional , 
+	some of them are logical, some of them are hardcore, 
+	some of then are funny, ...etc
+
+	this is not the special thing about them but the special thing is i have known 
+	there was unknown programming language called Soldity 
+	which it is released in 2017/2018
+
+	the impressive thing about it that this language is used either by QA engineer or 
+	Blockchain developer
+
+
+	im still don't know what else is needed to know to understand fully the world of enterprisism
+	but we will do our best , there are still a lot a lot of work to be done?
+
+	also we have found out that not only react native, flutter, ionic are able to build 
+	cross platform mobile application,
+
+	we have found out that c# also able to with xamrian and it looks also it can make desktop 
+	application with same source code in vs 2022 preview features
+
+	also we have found frameworks has capability to do so like framework7
+	framework7 [fm7]: it looks it was popular when first released but it not so popular today with around 25k stars on GitHub
+		fm7 build web application into mobile application like Ionic
+		fm7 supports directly for now , vanilla js , react , vue
+
+		and it also give u the choice between capacitor and Cordova
+
+	and it also looks has vue bundler , but it looks it is still limited 
+	
+	we tried to do a little search to see which one providing better features or performance
+	between fm7 and Ionic as both of them are using Cordova or Capcitor
+	
+	but we actually failed to get critical point to be said , i think the only difference
+	is that DX and popularity
+
+	i think mayhe vue bundler is limited because from few years there was web application 
+	framework called VueNative
+	it was like react native but for vue but it isnt supported anymore, 
+	so maybe this was their bundler or something
+
+	anyway, 
+	actually I haven't tested it full functionality but it looks it works for now
+
+	but it have to does native build on the phone to use it , and yes like any 
+	similar other tool it supports HMR
+
+	also there are two more choices for native cross platform mobile application 
+	Quasar:
+		it is built over vue and it uses vite builder , and it actually able to 
+		make SPA and native mobile applications and electron (desktop application)
+		with same source code 
+
+		actually it is very powerful with moderate popularity about 25k stars on GitHub
+
+		so in some cases i can say Quasar will be best choice to make universal application 
+		and thanks to vit builder it actually so fast
+		but it doesnt look it uses vite bundler but it uses Cordova 
+
+	Nativescript: 
+		it is a way to frontend frameworks to make native mobile applications, 
+		it supports a lot of tools even Ionic
+		but it has also to make native build on the phone to use it 
+
+		all those tools actually look great but I still dont know what war the differences
+
+		like why would u choose Ionic over nativescript and why Ionic is more 
+		popular with around 45k stars on GitHub
+
+		also there were before techs are not supported nowadays like PhoneGap
+
+		actually im not sure what happened to it but maybe it is related with Cordova or 
+		Apache
+
+		also i forgot to mention the speed of building native apps and HMR with xamrian,
+		however it requires more code to do screens and it is kinda increase the files 
+		a lot , as for each screen u have usually to make to files which they are .xml 
+		and .cs and then utilise.xml file in .cs file so it kinda has solid pattern 
+		for development
+
+
+	so for now i dont think there is more tools for building 
+	cross platform applications other than the ones mentioned above
+
+
+	also ww have known that there are sites u can call it no-code development
+	it sites where u can build applications through UI, there's one for react so far, and there is more than one for flutter and most popular one built by Google is flutterflow 
+
+
+	also we have gain some knowledge of how or what are the components needs to 
+	make basic architecture:
+		take massaging for example or u can call ot [SOMETHING ]:
+		this 
+		"
+		any architecture of something like messaging consists of:
+		message system
+		message channels
+		message construction 
+		message routing 
+		message transformation 
+		message endpoint  
+		message system management 
+		"
+
+
+		Learn more at .....
+		 
+
+
+	we have also heard about business tools [tools]
+	actually they are many tools starting from learning tools , 
+	to business tools and finally enterprise tools
+
+	also we have established a long fight we dont know how to win in 
+	it u can call it +3:1 fight
+
+	i have call it with this name because we have to make presence on social media 
+	so we can make continues feedback for our app , also 
+	i have to make the app till its finest, and also learn about enterprising and 
+	start our journey 
+
+
+	hoofh , this is a lot we have found also other tech can actually 
+	used to make native cross platforms mobile applications :
+	appcelerator titanium 
+	onsen UI
+	Fuse
+	Weex
+	codename one
+	B4X
+	Sencha touch
+	tabris framework 
+	kendo ui
+	polymer
+	zeep
+
+	actually doesn't mean that their focus is mobile applications 
+	and it could be side effect or can happen by some configuration 
+	but there is no guarantee they would be nice for mobile development 
+	specially because they are like not existing, 
+	i think few people have heard about them
+	also i didnt check them out but i only heard their names
+	
+	
+
+
+
+	we have watched some comparison to under the difference between some techs and this is what we found
+	nativescript provide high performance because it's ability to access native performance unlike Ionic which it use Cordova or capacitor and which they use webview, ans webview isnt something related with mobiles or not native but they do somehow a behaviour-likr native mobiles but this is not providing good performance as nativescript, and also in some cases nativescript could provide better performance or streamlined than react native or xamrian
+
+	Ionic is easier to learn and becuase they dont use Native UI components but they own ones , it provides same look in all mobiles, also it uses html and css which is easier and u can say that if u dont care too much about native performance and full scale app then maybe ionic is better choice 
+
+
+	also one of big cons about nativescript that large app size , it is bigger size if u compared it to react native or ionic and also there is no
+	html and DOM support
+	may it requires more code for UI as it uses native UI
+
+
+	so in conclusion we can say nativescript may be used for more scaled projects 
+	so this is take us to the next point which it is
+
+	Nativescript vs Quasar 
+	Quasar has excellent doc, deployable in many platforms not only native platforms compared to other tools
+	extensive UI components 
+	able to almost bundle every platform 
+	high performance  but not the highest or best
+
+	maybe one of the drawbacks of Quasar is that it is less popular than other compatitors 
+	also it doesnt has direct integration with tailwind but this is doesnt mean tailwind wont work, actually u can make it work but there is no guarantee that u wont face issues
+
+	i think one of the biggest pros about nativescript is the native ability and the Native UX 
+	
+
+
+
+	
+	
+	
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V11
+	and here it comes the version 11 of our learning process , we have actually did good
+	, it is about 2000+ lines of notes of learning which it indicates it is a good thing
+	
+	Anyway
+	first of all we decided to have three acounts on social media:
+		one of them is mine
+		second one will be related with the business
+		third one will be related with the marketing
+	
+	each of them serve differenet purpose
+	
+	we also learned a lot about the MVP , and how it would look like , how u should build it
+	, its value, how it effects on organisations
+	
+	and becuase we have learnt about it , this is draft it to another draft which is 
+	how to get users, how to get customers , how to make base user,
+	how to get feedbacks, how to utilize feedbacks, how to do statistics about those feedbacks
+	so they would be useful, the importance of statistics, the importance of data,
+	the importance of data analysis and science, collabration, events and more.
+	
+	actually i cant fully cover them here so i will drop for Learn more at recap48*
+	
+	becuase of this drafting we got awareness of many things like how to communicate with
+	people, how to collabrate in related industrials , how to make a presence 
+	however i know we havent dont any of those things but we know understand more their values
+	for organisations
+	
+	we have also got awareness of authenticity, truthness, humnizing brand , community building	,
+	...etc.
+	
+	we also we have got a lot of info about the potential of data , and how the data is used 
+	in a lot of felids , we have cover a lot of information
+	
+	also we did a simple comparison about R and Python langs 
+	as both of them are used in data analysis and science 
+	R is considered to be stronger in in felid of data but however python is used more than
+	R , and this is becuase python is strong in many fields which made it better choice
+	despite the power of R, specially when it comes to data science that it is usually used
+	with ai and python is primary lang for AI, so for those reasons i think why python is 
+	preferred over R,
+	
+	learn more at recap49*
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V12
+
+	we barely get something to be told this time! , 
+	it was difficult months with a lot of things to do. therefore im like i can remember 
+	nothing, but here is what i can think of it for now
+
+	we have get knowledge of how api language agnostic is made, and it looks to make 
+	api language agnostic u have to use standards that mostly or with high chance it 
+	would be found in programming language
+
+	also we have known a bit of how to create an sdk, we can say that sdk is a group 
+	of wrappers or libraries or both of them, sdk facilitate many things 
+	for the developers and in many cases it acts as a bridge 
+
+	also to create sdk between 2 or more languages 
+	there's some common ways:
+		shared library, where the sdk is resolved into shared library file and imported in the other languages
+		api
+		foreign functions interfaces FFI
+		language binding
+
+		while language binding may consist of many things like FFI and apis and so
+
+	we also have knew about tool called cucumber.js which it make the tests human 
+	readable language
+	
+	we also we have knew about tool called spark it is used for big data
+	
+	we have known about template engines for frontend like pugJS, Handlebars and Mustache
+	acutally im not sure if Handlebars is a template engine or not but this info from
+	internet so it mostly would be right
+	
+	tbh, those tools i just mentioned u can also considere them an HTML preprocessors
+	it looks like template engines is a part from preprocessing
+	maybe the template engine looks differenet or maybe to looks similar
+	but in short the preprocessors provide more features into standard html, and
+	may they add dynamic feature, symantic typing, ...etc.
+	
+	while template engines may provide or to be more focused on dynamic data and 
+		template generation
+		
+	i think one of the most common preprocessors is PugJs
+	
+	also we have found out the task runner `gulp`, u can also consider the CI/CD tools 
+	a task runner but they are more than that also they tasks are not the same tasks for `gulp`
+	gulp can do tasks like:
+		minify file
+		image minimization/optimization
+		rename
+		moving/pasting
+		simple caching
+		watch changes
+		prettify
+		distribute
+		...etc.
+	it is up to its plugins , so far, it has about 4000+ plugins which they would be useful
+	when to use task runners as `gulp`?:
+		when ur framework or tool doesnt support bundling 
+		gulp in short focuses on routine bunling things and more
+		but tools or frameworks like react-native doesnt need gulp becuase the bundling is happening
+		by metro and u can configure it just through metro.config
+
+	we have tried to find out about SIRP [i dont remember if i mentioned it before but it
+	is procedures in case of security incidents and there's online platforms and vendors to help in
+	like `thehive`]
+	but we couldnt found good article or book or something of how u should act, common stratgies, ...etc.
+	in the end all we have got some researches and images i wish they are useful
+	
+	we also have known about creating a repo where it has ur preferred self config files
+	like .editorConfig ,...etc. 
+	to not config this file every time and they call this repo `dotFiles repo`
+	
+	if u remember from V9, we have discuse of how vendors would hide the apis and related tools
+	and configurations
+	
+	we have thought that they would use two repos and make it in sync
+	
+	actually this was valid idea but when we have tried on github it failed
+	it failed becuase:
+		firstly we created an organisation then we transfered our repo to the organisation
+		and we did make it public 
+		then we forked it in our account we have found out that the fork cant be private
+		which made our idea invalid [public org repo, private forked user repo]
+		so we thought if we made the organisation repo private it would work, 
+		but after change visibility the forks are deleted and become clones
+		also i dont know if it possible to fork private repo or not but we still
+			dont know about this
+	so becuase of this , it as failed so we decided to think about it again and find out 
+	how it is still implemented
+	
+	actually if u think about it u would find it this is something related with the ecosystem
+	of programming langauge becuase in python ecosystem u can easily create 
+	['requirements-test.txt', 'requirements-dev.txt', 'requirements-prod.txt']
+	and just hide [not commiting it] the requirements-prod.txt 
+	but in NodeJS ecosystem u will find u should have only one config file which it is 
+	package.json
+	
+	but im still thinking if we managed to solve this problem here we would manage to face 
+	it at any other programming langauge
+	
+	so still still.
+	the problem is hide data[e.g. dependacies] from package.json:
+		so the only one thing i could think about it is this solution:
+			is to remove the desired data to be hidden before commiting then adding
+			then again after commiting
+			
+			but this is doesnt look like a perfect solution but this is what we have concluded
+			but anyway we tried to investigate `Next` repo project to see if there is related
+			data of how it is implemented
+			
+			for fortunally, we have found there is a data and it looks NextJS follows my solution
+			but they have: 
+				setup file: which it looks it setup their project after commting or before starting
+				service-package-json: it was have the services that isnt shown [hidden] like sentry API
+				update-package: which it updates package.json from service-package-json
+			
+			NextJS have thousands of files and searching for just a single thing would be worthless
+			but from our investigation we can say we this info is accurate by 80%
+			
+			and this sufficient
+			
+	we also we have knew a feature inside package.json that u can set pre and post command
+	for any command
+	
+	e.g. {scripts:{
+		"premycommand": "echo PRE",
+		"mycommand": "echo COMMAND",
+		"postmycommand": "echo POST"
+	}}
+	
+	we have also known about SPDX, which it is related with license
+	actually i dont know what it is directly but i think it is Standards for licenses and more
+	
+	we have tried to find useful videos but we didnt pass
+		
+		
+	we have also knew about tool called styleGuideList which it CDD [component driven development]
+	styleGuideList is similar to storybook [also CDD]
+	
+	but styleGuideList use markdown files and it makes the components looks more like a 
+	documentation while storbook focus more on make it visualized and isolated
+	
+	we have collected a range of documentations u can learn more at recap[50-65]*.*
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V13
+	for this time, we have tried again the buildozer of python to make an apk 
+		however there is now better ways to make apk with python but it is in beta version
+		which it is `flet`, flet is new tech wrappering flutter to be langauge agnostic
+		so u can create any universal app with it beucase it has just startup in 2024 it
+		is only in beta version and it supports python for now , but the other langauges
+		will be supported soon
+		anyway what i want to say is this time different from the last time, 
+		again we faced this error of buildozer which says `buildozer failed to execute the last command`
+		but now we understand what is happening and what caused the error again the error
+		comes from the dumb way of how python handles the modules,
+		the last command with a python ecosystem command to a file to create the dist-app
+		but it failed , maybe becuase the path is provided , 
+		anyway the way to fix this is only to fix this circular import in python files
+		and this is will fix them 
+		we have recorded the log file if u want to check also we have saved the notebook
+		for tracing
+		
+	also we have knew that powershell is actually object oriented
+		programming[program] scripting [OOP]
+		unlike unix-based terminal it is unique within them
+		also the suprivising thing about powershell that mostly its operations and
+		methods returns objects
+		even when u do a simple print statment it is acutally returning an object
+		
+	we have also known the project charter which usually done through the program manager, 
+		The project charter: is a comprehensive document that outlines key aspects 
+			of a project and provides a foundation for its successful management
+		program manager is considered to be higher the the pyramind of the authority in 
+		organisation
+	
+	we are studying statistics now hoping oneday we would use it in our life , we would 
+		apply it to understand ourseleves
+	
+	but the courses we have seen and researches we have did they were actually useful
+	becuase now i feel like im understanding statistics like i have never been,
+	i have also recovered some old notes[rules] from 3rd secondary
+	
+	also we got some resources like plots, videos[project management, media, ...etc.]
+	
+	acutally i dont remember what we have done from last time rather than this,
+		but we also have made a statistical schedule which it is a guide
+		for perfect benefical[productive] day
+		we have also leart how to do plots on pc and manually and calculate and 
+		implement some statistics functions
+		
+	also in the new year [2024] it looks expo was gifting a surprise, finally expo SDK 50
+		has come to play some people have call it the killer of NextJS, 
+		but i dont think it really is but it is close, maybe SDK 51 will be the killer
+		the SDK 50 now is in its beta version, it provides lighter bundle size, faster
+		export, full-battery, server features [now in SDK 50 u can write the backend and frontend with
+		only expo, better routing], expo-router-V3 , very optimized SQLite with now better data sync, new
+		debugging tools, finally expo [SDK 50] is now extensible
+		
+		expo not only the gifter here but also Nativewind V4, 
+			NextJS V14, Flet[new tech], Turbo, ...etc.
+		
+		
+	nowadays we are not writting in this file too much as in the past, for many reasons
+		like for modularity becuase every file has its own related notes , and other reasons
+		like for illness becuase i have been ill for days
+		so im likely not having too much to say as days ago
+	
+	
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V14
+	we have been through difficult time this time, which led to diminising of ourselves
+	we have got kinda weaker, we have been less productive than usual, we have been more lazier
+	,despressed,shaded.
+	we are likely we have nothing to write about in this notes anymore, i dont know if we
+	will have further future with this notes anymore, but anyway
+	here i will try to tell what we have been through in this undeterminant interval of time
+	
+	we have recongnised the benfits of having a schedule, also we are slowly slowly establishing 
+	our ambitions, we have learned about some maths' histroy:
+		we have learned about `e` the exponential number, we have understood its meaning 
+			and feeling in physical life, we have knew its histroy from when it is all begun
+			we have knew about its importance and its rule in financial and other fields
+		
+		we have as well as `e` knew about logarithms, we have knew about the relation links
+			both of exponential and logarithms together specially for `ln` function
+			we have knew how the log function is being calculated in computer,
+			learn more at `recap76*`
+		
+		we have also studied Django, we have cover its basics to make basic websites with its
+			route dynamically and statically.
+			but we have decided to stop learning it till we complete our course in frontend first
+			and may we also come across some standard basics of backend 
+			
+		we have knew that there is different kind of standard statistical functions,
+			like the `mean` or i should call it the arithmatic `mean`, we have knew that there
+			is different kind of `mean` like geometric mean, harmonic mean, [i dont know if there is more].
+			which each of them are being used in different places and they have different rules,
+			
+			we have realised that to determine which shape of `mean` to use it depends on characteristics
+			of the equation, data, environment, ...etc.
+			like if u are trying to get the mean of `something growths`
+			this is mean it would be better to use geometric mean becuse the growth has 
+			characteristics of multiplication 
+			learn more at `recap77*`
+			
+		
+		
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+V15
+
+	i think this is the third version of its kind where we don't have a lot to talk about but 
+	this time i have done better than the last time
+
+	we have went through python track, we have revised the python built in functions and 
+	discover more
+
+	we have initialized many projects to be done with python 
+
+	also we have got a new project ideas like poster, git custom cli, logger, and more 
+
+	also we have started to implement them we have done pretty good in time tracker 
+	application that can be said it is in alpha stage
+
+	also we have known about some computer architecture concepts and tools like FGPA , 
+	HDL, verilog, Quartus,...etc.
+
+	also we have went pretty well in learning gui where we have made basic gui with 
+	tkinter and advanced gui with pyqt
+
+	pyqt was wee free wee too comprehensive it has many many things, so we have learned 
+	about its widgets and signals and echarts and animations and testing 
+
+	also we have went through design patterns we have already implemented 
+	calculator app which it use MVC pattern and we have did it other project and also 
+	we are using it in time tracker
+
+	also we have learned about the command pattern and we did a small project with it 
+	and we have took a peek about command factory 
+
+	we have also new about special behaviour in python where u can pass a class like 
+	class object or instance of the class, and i know both of them are looking 
+	similar but they are not , when u define a variable that carries a class u are 
+	actually making an instance but if u used this 
+	class directly (have to be passed as argument) 
+	this what they call class object, also they may look the same but they aren't,
+	first of the data type is different, second of all when u pass a class object 
+	it is now gain dynamic behaviour which lead u can like create instances 
+	dynamically and methods which could lead to more complex approach 
+	which they call metaprogramming or monkey protocol, 
+	actually this behaviour is specifical in python because classes in 
+	python are first class unlike other languages, 
+	so u can't do same thing here directly as u can in c++, 
+	in c++ u have to define an instance and u cant just pass a class object
+
+	as i said before there is a difference of datatype between object 
+	class and instances u can figure this out by this way
+
+	```
+	from typing import Type
+	class X:
+		def __init__(self, t: Type[T]):
+		pass
+	#this is uses object class
+	#test it with mypy
+	```
+	
+	```
+	class X:
+		def __init__(self, t: T):
+		pass
+	#this is uses instances of class
+	#test it with mypy
+	```
+
+	also there is special things about typing module, where when u do normal type hinting 
+	it is not sufficient and it doesn't work in every case so better is 
+	to use typing module i have proved that by this simple example
+	```x: int or float = 5 #will give wrong type hinting```
+
+	```from typing import Union
+	x:  Union[int, float] = 5 # good type hinting```
+
+
+	also we have know about stub files(pyi) it is a python files used for interface 
+	like header files in c++, their name should be the same name of the equivalent 
+	python file but it looks stub files has a problem of changing the directory 
+	where their equivalent python file exist.
+
+	also we have learned about how to debug in pycharm and vs code
+
+	and we tried the plugin `code with me` in pycharm
+
+	we have learned a bit about cache and a lot of python modules
+
+	we have learned about functools, tempfile, openpyxl, typing, ...etc.
+	learn more at ``
+	
+	also we have learned about Makefile and how to use it , and we have knew that it 
+	is not limited to C or C++ but can be used with any language
+
+	we have also know specifical things in python , u can make custom operator with @
+	u can modify the class behaviour with something called metaclass, 
+	we have knew further about classes, 
+	we have knew that all classes come from the class 'type'
+
+	also we have know about lambda function not in progammitcally way but in general we have
+	understand things about lambda function and why it has been used in many rules
+	learn more at `recap82*`
+	
